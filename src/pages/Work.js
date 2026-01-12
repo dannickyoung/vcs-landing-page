@@ -1,6 +1,6 @@
 // Work Page - Portfolio Showcase (CMS-like)
 export function renderWork() {
-  // Helper function to generate thumbnail path
+  // Helper function to generate thumbnail path with URL encoding
   const getThumbnailPath = (category, projectName) => {
     const categoryMap = {
       'branding': 'Brand Design',
@@ -9,7 +9,10 @@ export function renderWork() {
       'ai': 'Ai Products'
     };
     const categoryFolder = categoryMap[category] || category;
-    return `/CMS/${categoryFolder}/${projectName}/THUMBNAIL.png`;
+    // URL encode each path segment to handle spaces and special characters
+    const encodedCategory = encodeURIComponent(categoryFolder);
+    const encodedProject = encodeURIComponent(projectName);
+    return `/CMS/${encodedCategory}/${encodedProject}/THUMBNAIL.png`;
   };
 
   // Helper function to create project slug

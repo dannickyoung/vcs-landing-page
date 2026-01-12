@@ -1,6 +1,6 @@
 // Project Detail Page - Individual Project Showcase
 export function renderProjectDetail(projectId) {
-  // Helper function to get all images for a project
+  // Helper function to get all images for a project with URL encoding
   const getProjectImages = (category, projectName) => {
     const categoryMap = {
       'brand': 'Brand Design',
@@ -9,12 +9,15 @@ export function renderProjectDetail(projectId) {
       'ai': 'Ai Products'
     };
     const categoryFolder = categoryMap[category] || category;
+    // URL encode each path segment to handle spaces and special characters
+    const encodedCategory = encodeURIComponent(categoryFolder);
+    const encodedProject = encodeURIComponent(projectName);
     const images = [];
     // Try to find all numbered images (01.png, 02.png, etc.)
     // We'll include up to 20 images, but the actual number will depend on what exists
     for (let i = 1; i <= 20; i++) {
       const imageNum = i.toString().padStart(2, '0');
-      images.push(`/CMS/${categoryFolder}/${projectName}/${imageNum}.png`);
+      images.push(`/CMS/${encodedCategory}/${encodedProject}/${imageNum}.png`);
     }
     return images;
   };

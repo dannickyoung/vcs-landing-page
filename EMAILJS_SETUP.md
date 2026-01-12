@@ -66,3 +66,4 @@ const result = await emailjs.sendForm(
 - **"Invalid template ID"**: Verify your template ID matches the one in the dashboard
 - **Emails not arriving**: Check spam folder, verify email service configuration in EmailJS dashboard
 
+

@@ -9,7 +9,7 @@ export function renderWork() {
       'ai': 'Ai Products'
     };
     const categoryFolder = categoryMap[category] || category;
-    return `/src/public/CMS/${categoryFolder}/${projectName}/THUMBNAIL.png`;
+    return `/CMS/${categoryFolder}/${projectName}/THUMBNAIL.png`;
   };
 
   // Helper function to create project slug
@@ -55,7 +55,7 @@ export function renderWork() {
     return `
       <a href="/work/${project.slug}" data-route="work/${project.slug}" class="work-project-item block" data-category="${category}">
         <div class="relative overflow-hidden group cursor-pointer aspect-[4/5]">
-          <img src="${thumbnailPath}" alt="${project.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='/src/public/featured_project_1.png';">
+          <img src="${thumbnailPath}" alt="${project.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='/featured_project_1.png';">
           <div class="absolute inset-0 bg-vici-black/0 group-hover:bg-vici-black/40 transition-all duration-300"></div>
         </div>
         <div class="mt-3 md:mt-4">

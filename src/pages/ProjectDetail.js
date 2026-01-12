@@ -14,7 +14,7 @@ export function renderProjectDetail(projectId) {
     // We'll include up to 20 images, but the actual number will depend on what exists
     for (let i = 1; i <= 20; i++) {
       const imageNum = i.toString().padStart(2, '0');
-      images.push(`/src/public/CMS/${categoryFolder}/${projectName}/${imageNum}.png`);
+      images.push(`/CMS/${categoryFolder}/${projectName}/${imageNum}.png`);
     }
     return images;
   };

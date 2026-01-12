@@ -15,7 +15,7 @@ export function renderTeam() {
           <!-- Team Member 1: Vivian Chan -->
           <div class="team-member">
             <div class="mb-4 md:mb-6 relative overflow-hidden group">
-              <img src="/src/public/Headshots/Vivian.png" alt="Vivian Chan" class="w-full h-64 md:h-72 lg:h-80 object-cover object-top rounded-sm transition-transform duration-300 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <img src="/Headshots/Vivian.png" alt="Vivian Chan" class="w-full h-64 md:h-72 lg:h-80 object-cover object-top rounded-sm transition-transform duration-300 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="w-full h-64 md:h-72 lg:h-80 bg-vici-white/5 rounded-sm flex items-center justify-center" style="display: none;">
                 <span class="text-3xl md:text-4xl text-vici-white/20">Photo</span>
               </div>
@@ -27,7 +27,7 @@ export function renderTeam() {
           <!-- Team Member 2: Dannick Young -->
           <div class="team-member">
             <div class="mb-4 md:mb-6 relative overflow-hidden group">
-              <img src="/src/public/Headshots/Dannick.png" alt="Dannick Young" class="w-full h-64 md:h-72 lg:h-80 object-cover object-top rounded-sm transition-transform duration-300 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <img src="/Headshots/Dannick.png" alt="Dannick Young" class="w-full h-64 md:h-72 lg:h-80 object-cover object-top rounded-sm transition-transform duration-300 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="w-full h-64 md:h-72 lg:h-80 bg-vici-white/5 rounded-sm flex items-center justify-center" style="display: none;">
                 <span class="text-3xl md:text-4xl text-vici-white/20">Photo</span>
               </div>
@@ -39,7 +39,7 @@ export function renderTeam() {
           <!-- Team Member 3: Mathias Choo -->
           <div class="team-member">
             <div class="mb-4 md:mb-6 relative overflow-hidden group">
-              <img src="/src/public/Headshots/Mathias.png" alt="Mathias Choo" class="w-full h-64 md:h-72 lg:h-80 object-cover object-top rounded-sm transition-transform duration-300 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <img src="/Headshots/Mathias.png" alt="Mathias Choo" class="w-full h-64 md:h-72 lg:h-80 object-cover object-top rounded-sm transition-transform duration-300 group-hover:scale-110" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="w-full h-64 md:h-72 lg:h-80 bg-vici-white/5 rounded-sm flex items-center justify-center" style="display: none;">
                 <span class="text-3xl md:text-4xl text-vici-white/20">Photo</span>
               </div>

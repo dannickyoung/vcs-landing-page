@@ -103,7 +103,7 @@ export function renderHome(currentRoute = 'home') {
       <div class="relative z-10 flex-1 flex items-center justify-center px-5 md:px-8 py-8 md:py-12">
         <div class="text-center">
               <div class="hero-title opacity-0">
-                <img src="/Wordmark_dark.png" alt="VICI STUDIO" class="h-12 sm:h-16 md:h-20 lg:h-24 xl:h-32 2xl:h-36 w-auto max-w-[90%] sm:max-w-[80%] md:max-w-none mx-auto" />
+                <img src="/Wordmark_dark.png" alt="VICI STUDIO" class="w-[85%] sm:w-[75%] md:w-[65%] lg:w-[55%] xl:w-[50%] 2xl:w-[45%] h-auto mx-auto object-contain" style="max-width: 100%; height: auto;" />
               </div>
         </div>
       </div>

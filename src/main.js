@@ -748,6 +748,22 @@ function initMobileMenu() {
   const menuClose = document.getElementById('menu-close');
   const mobileMenu = document.getElementById('mobile-menu');
   
+  // Function to close mobile menu
+  const closeMobileMenu = () => {
+    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+      gsap.to(mobileMenu, {
+        opacity: 0,
+        y: -20,
+        duration: 0.3,
+        ease: 'power2.in',
+        onComplete: () => {
+          mobileMenu.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  };
+  
   if (menuToggle && mobileMenu) {
     menuToggle.addEventListener('click', () => {
       mobileMenu.classList.remove('hidden');
@@ -760,17 +776,14 @@ function initMobileMenu() {
   }
   
   if (menuClose && mobileMenu) {
-    menuClose.addEventListener('click', () => {
-      gsap.to(mobileMenu, {
-        opacity: 0,
-        y: -20,
-        duration: 0.3,
-        ease: 'power2.in',
-        onComplete: () => {
-          mobileMenu.classList.add('hidden');
-          document.body.style.overflow = '';
-        }
-      });
+    menuClose.addEventListener('click', closeMobileMenu);
+  }
+  
+  // Close menu when any menu link is clicked
+  if (mobileMenu) {
+    const menuLinks = mobileMenu.querySelectorAll('a[data-route]');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
     });
   }
 }

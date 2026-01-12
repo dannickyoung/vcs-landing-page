@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vcs-landing-page.vercel.app/sitemap.xml
+

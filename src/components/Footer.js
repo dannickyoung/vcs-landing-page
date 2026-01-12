@@ -5,7 +5,7 @@ export function createFooter() {
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row md:justify-between mb-8 md:mb-12 md:items-start">
           <!-- Left Section - Contact Message -->
-          <div class="md:flex-shrink-0 max-w-[450px]">
+          <div class="md:flex-shrink-0 w-full md:max-w-[450px]">
             <!-- Brand Name -->
             <div class="text-sm md:text-base text-vici-white/60 mb-4 md:mb-6 footer-item opacity-0">
               VICI STUDIO®

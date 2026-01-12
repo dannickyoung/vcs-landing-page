@@ -5,7 +5,7 @@ export function createNavigation() {
       <div class="px-5 md:px-8 py-2 flex items-center justify-between">
         <!-- Logo Left -->
         <a href="/" data-route="home" class="flex items-center gap-2 transition-opacity hover:opacity-80">
-          <img src="/Logo-icon-red.png" alt="VICI Studio" class="h-5 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+          <img src="/Logo-icon-red.png" alt="VICI Studio" class="h-5 w-auto max-w-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
           <span class="text-sm font-semibold tracking-tight text-vici-white hidden">VICI</span>
         </a>
         

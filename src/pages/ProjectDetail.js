@@ -265,7 +265,7 @@ export function renderProjectDetail(projectId) {
               <img 
                 src="${image}" 
                 alt="${project.title} - Image ${index + 1}" 
-                class="w-full h-auto object-cover"
+                class="w-full h-auto object-contain max-w-full"
                 onerror="this.parentElement.style.display='none';"
               >
             </div>

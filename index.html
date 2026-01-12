@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VICI Studio</title>
+  <link rel="icon" type="image/png" href="/Favicon_red.png">
+  <link rel="shortcut icon" type="image/png" href="/Favicon_red.png">
+  <link rel="apple-touch-icon" href="/Favicon_red.png">
+  <link rel="stylesheet" href="/src/input.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+  <body class="font-sans antialiased">
+  <!-- Cookie Notice -->
+  <div id="cookie-notice" class="fixed bottom-0 left-0 right-0 bg-vici-white border-t border-vici-black/10 p-4 z-50 hidden">
+    <div class="px-5 flex items-center justify-between flex-wrap gap-4">
+      <p class="text-sm text-vici-black">This website uses cookies to ensure you get the best experience. <a href="#" class="underline hover:text-vici-red transition-colors text-vici-black">Privacy policy</a></p>
+      <div class="flex gap-4">
+        <button id="accept-cookies" class="text-sm font-medium hover:opacity-80 transition-opacity text-vici-black">Accept</button>
+        <button id="reject-cookies" class="text-sm font-medium hover:opacity-80 transition-opacity text-vici-black">Reject</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Container -->
+  <div id="nav-container"></div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 bg-vici-white z-50 hidden">
+    <div class="px-5 pt-20">
+      <button id="menu-close" class="absolute top-5 right-5 text-xs text-vici-black hover:text-vici-red transition-colors">Close</button>
+      <nav class="flex flex-col gap-6 text-lg text-vici-black">
+        <a href="/work" data-route="work" class="hover:text-vici-red transition-colors text-vici-black">Work</a>
+        <a href="/services" data-route="services" class="hover:text-vici-red transition-colors text-vici-black">Services</a>
+        <a href="/studio" data-route="studio" class="hover:text-vici-red transition-colors text-vici-black">Studio</a>
+        <a href="/team" data-route="team" class="hover:text-vici-red transition-colors text-vici-black">Team</a>
+        <a href="/contact" data-route="contact" class="hover:text-vici-red transition-colors text-vici-black">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <main id="app-content" class="bg-vici-black">
+  </main>
+
+  <!-- Footer Container -->
+  <div id="footer-container"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
+

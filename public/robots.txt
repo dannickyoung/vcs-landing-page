@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vcs-landing-page.vercel.app/sitemap.xml
+Sitemap: https://thevicistudio.com/sitemap.xml
 

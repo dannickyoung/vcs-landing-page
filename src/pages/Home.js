@@ -23,7 +23,7 @@ export function renderHome(currentRoute = 'home') {
         <div class="px-5 md:px-8 py-2 flex items-start justify-between relative">
           <!-- Logo Left -->
           <a href="/" data-route="home" class="flex items-center gap-2 transition-opacity hover:opacity-80">
-            <img src="/Logo%20icon_red.png" alt="VICI Studio" class="h-6 md:h-7 lg:h-8 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+            <img src="/Logo-icon-red.png" alt="VICI Studio" class="h-6 md:h-7 lg:h-8 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
             <span class="text-sm font-semibold tracking-tight text-vici-white hidden">VICI</span>
           </a>
           
@@ -171,7 +171,7 @@ export function renderHome(currentRoute = 'home') {
             <div class="portfolio-tracker">
               <div class="portfolio-tracker-marks">
                 <div class="portfolio-tracker-mark active" data-index="0">
-                  <img src="/Logo%20icon_red.png" alt="VICI" class="portfolio-tracker-logo">
+                  <img src="/Logo-icon-red.png" alt="VICI" class="portfolio-tracker-logo">
                 </div>
                 <div class="portfolio-tracker-ticks">
                   <div class="portfolio-tracker-tick"></div>
@@ -191,7 +191,7 @@ export function renderHome(currentRoute = 'home') {
                   <div class="portfolio-tracker-tick"></div>
                 </div>
                 <div class="portfolio-tracker-mark" data-index="1">
-                  <img src="/Logo%20icon_red.png" alt="VICI" class="portfolio-tracker-logo">
+                  <img src="/Logo-icon-red.png" alt="VICI" class="portfolio-tracker-logo">
                 </div>
                 <div class="portfolio-tracker-ticks">
                   <div class="portfolio-tracker-tick"></div>
@@ -211,7 +211,7 @@ export function renderHome(currentRoute = 'home') {
                   <div class="portfolio-tracker-tick"></div>
                 </div>
                 <div class="portfolio-tracker-mark" data-index="2">
-                  <img src="/Logo%20icon_red.png" alt="VICI" class="portfolio-tracker-logo">
+                  <img src="/Logo-icon-red.png" alt="VICI" class="portfolio-tracker-logo">
                 </div>
                 <div class="portfolio-tracker-ticks">
                   <div class="portfolio-tracker-tick"></div>
@@ -231,7 +231,7 @@ export function renderHome(currentRoute = 'home') {
                   <div class="portfolio-tracker-tick"></div>
                 </div>
                 <div class="portfolio-tracker-mark" data-index="3">
-                  <img src="/Logo%20icon_red.png" alt="VICI" class="portfolio-tracker-logo">
+                  <img src="/Logo-icon-red.png" alt="VICI" class="portfolio-tracker-logo">
                 </div>
               </div>
             </div>

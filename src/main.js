@@ -28,27 +28,39 @@ let welcomeScreenExited = false;
 
 function initWelcomeScreen() {
   const welcomeScreen = document.getElementById('welcome-screen');
-  const welcomeText = document.getElementById('welcome-text');
+  const welcomeBrand = document.getElementById('welcome-brand');
+  const welcomeLocation = document.getElementById('welcome-location');
   
-  if (!welcomeScreen || !welcomeText) return;
+  if (!welcomeScreen || !welcomeBrand || !welcomeLocation) return;
   
   // Prevent body scroll during welcome screen
   document.body.style.overflow = 'hidden';
   welcomeScreenStartTime = Date.now();
   welcomeScreenExited = false;
   
-  // Set initial state: text starts from outside (scaled down and translated)
-  gsap.set(welcomeText, {
-    opacity: 0,
-    scale: 0.3,
-    y: 50
+  // Set initial positions (off-screen)
+  gsap.set(welcomeBrand, {
+    x: -200,
+    opacity: 0
   });
   
-  // Intro animation: animate towards center (fade in + scale up + slide to center)
-  gsap.to(welcomeText, {
+  gsap.set(welcomeLocation, {
+    x: 200,
+    opacity: 0
+  });
+  
+  // Intro animation: move towards center
+  gsap.to(welcomeBrand, {
+    x: 0,
     opacity: 1,
-    scale: 1,
-    y: 0,
+    duration: 1,
+    ease: 'power2.out',
+    delay: 0.2
+  });
+  
+  gsap.to(welcomeLocation, {
+    x: 0,
+    opacity: 1,
     duration: 1,
     ease: 'power2.out',
     delay: 0.2
@@ -59,9 +71,10 @@ function exitWelcomeScreen() {
   if (welcomeScreenExited) return;
   
   const welcomeScreen = document.getElementById('welcome-screen');
-  const welcomeText = document.getElementById('welcome-text');
+  const welcomeBrand = document.getElementById('welcome-brand');
+  const welcomeLocation = document.getElementById('welcome-location');
   
-  if (!welcomeScreen || !welcomeText) return;
+  if (!welcomeScreen || !welcomeBrand || !welcomeLocation) return;
   
   welcomeScreenExited = true;
   
@@ -71,11 +84,17 @@ function exitWelcomeScreen() {
   const remainingTime = Math.max(0, minDisplayTime - elapsed);
   
   setTimeout(() => {
-    // Exit animation: animate away from center (fade out + scale down + slide away)
-    gsap.to(welcomeText, {
+    // Exit animation: move away from center
+    gsap.to(welcomeBrand, {
+      x: -200,
       opacity: 0,
-      scale: 0.3,
-      y: -50,
+      duration: 0.8,
+      ease: 'power2.in'
+    });
+    
+    gsap.to(welcomeLocation, {
+      x: 200,
+      opacity: 0,
       duration: 0.8,
       ease: 'power2.in'
     });

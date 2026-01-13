@@ -10,11 +10,8 @@ export function renderHome(currentRoute = 'home') {
         style="width: 100%; height: 100%; min-height: 100vh; pointer-events: auto;"
       ></div>
       
-      <!-- Bottom Gradient Overlay to Hide Branding -->
-      <div class="absolute bottom-0 left-0 right-0 h-48 md:h-56 lg:h-64 xl:h-72 z-10 pointer-events-none" style="background: linear-gradient(to top, #000000 0%, #000000 20%, rgba(0, 0, 0, 0.95) 40%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0) 100%);"></div>
-      
       <!-- Navigation Bar at Top -->
-      <nav class="relative z-50 transition-all duration-300 pt-6 md:pt-8 lg:pt-10" id="main-nav">
+      <nav class="relative z-10 transition-all duration-300 pt-6 md:pt-8 lg:pt-10" id="main-nav">
         <div class="px-5 md:px-8 py-2 flex items-start justify-between relative">
           <!-- Logo Left -->
           <a href="/" data-route="home" class="flex items-center gap-2 transition-opacity hover:opacity-80">
@@ -104,7 +101,7 @@ export function renderHome(currentRoute = 'home') {
       </div>
       
       <!-- Bottom Informational Elements -->
-      <div class="relative z-20 w-full pb-6 md:pb-8 lg:pb-12">
+      <div class="relative z-10 w-full pb-6 md:pb-8 lg:pb-12">
         <div class="px-5 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
           <!-- Bottom Left - Logo & Location -->
           <div class="flex flex-col gap-2 md:gap-3 hero-bottom-item opacity-0">

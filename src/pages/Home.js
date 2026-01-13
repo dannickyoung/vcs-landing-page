@@ -3,15 +3,10 @@ export function renderHome(currentRoute = 'home') {
   return `
     <!-- Hero Section -->
     <section class="relative h-screen flex flex-col overflow-hidden bg-vici-black" id="hero-section">
-      <!-- Unicorn Studio Background -->
+      <!-- ColorBends Background -->
       <div 
+        id="color-bends-container"
         class="absolute inset-0 w-full h-full z-0"
-        data-us-project="s6hmZ9QhgQ5a94uYlbFY" 
-        data-us-production="true"
-        data-us-lazyload="true"
-        data-us-scale="0.75"
-        data-us-dpi="1.0"
-        data-us-fps="30"
         style="width: 100%; height: 100%; min-height: 100vh;"
       ></div>
       

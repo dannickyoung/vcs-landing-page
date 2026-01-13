@@ -13,6 +13,7 @@ import { renderTeam } from './pages/Team.js';
 import { renderContact } from './pages/Contact.js';
 import { renderNews } from './pages/News.js'; // About Us page
 import { renderPrivacy } from './pages/Privacy.js';
+import { mountColorBends } from './components/ColorBendsWrapper.jsx';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -97,11 +98,10 @@ function exitWelcomeScreen() {
   const remainingTime = Math.max(0, minDisplayTime - elapsed);
   
   setTimeout(() => {
-    // Exit animation: move away from center and scale down
+    // Exit animation: move away from center
     gsap.to(welcomeBrand, {
       x: -80,
       opacity: 0,
-      scale: 0.2,
       duration: 0.8,
       ease: 'power2.in'
     });
@@ -109,14 +109,12 @@ function exitWelcomeScreen() {
     gsap.to(welcomeLocation, {
       x: 80,
       opacity: 0,
-      scale: 0.2,
       duration: 0.8,
       ease: 'power2.in'
     });
     
     gsap.to(welcomeSeparator, {
       opacity: 0,
-      scale: 0.2,
       duration: 0.8,
       ease: 'power2.in'
     });
@@ -158,8 +156,8 @@ async function initApp() {
         // Initialize navigation after hero is rendered
         initNavigation();
         initMobileMenu();
-        // Initialize Unicorn Studio
-        initUnicornStudio();
+        // Initialize ColorBends background
+        mountColorBends('color-bends-container');
       }
     } catch (error) {
       console.error('Error loading home page:', error);

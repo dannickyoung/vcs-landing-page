@@ -85,7 +85,7 @@ export function createSectionOne(currentRoute = '', title = '') {
           ${titleLines.line2 ? `
             <h1 class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light leading-[0.9] tracking-tight text-vici-white text-right mt-2 md:mt-3">
               ${titleLines.line2}
-            </h1>
+          </h1>
           ` : ''}
         </div>
       </div>

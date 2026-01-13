@@ -67,3 +67,4 @@ const result = await emailjs.sendForm(
 - **Emails not arriving**: Check spam folder, verify email service configuration in EmailJS dashboard
 
 
+

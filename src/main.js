@@ -37,20 +37,22 @@ function initWelcomeScreen() {
   welcomeScreenStartTime = Date.now();
   welcomeScreenExited = false;
   
-  // Intro animation: fade in + slide up
-  gsap.fromTo(welcomeText, 
-    {
-      opacity: 0,
-      y: 30
-    },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: 'power2.out',
-      delay: 0.2
-    }
-  );
+  // Set initial state: text starts from outside (scaled down and translated)
+  gsap.set(welcomeText, {
+    opacity: 0,
+    scale: 0.3,
+    y: 50
+  });
+  
+  // Intro animation: animate towards center (fade in + scale up + slide to center)
+  gsap.to(welcomeText, {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    duration: 1,
+    ease: 'power2.out',
+    delay: 0.2
+  });
 }
 
 function exitWelcomeScreen() {
@@ -69,10 +71,11 @@ function exitWelcomeScreen() {
   const remainingTime = Math.max(0, minDisplayTime - elapsed);
   
   setTimeout(() => {
-    // Exit animation: fade out + slide up
+    // Exit animation: animate away from center (fade out + scale down + slide away)
     gsap.to(welcomeText, {
       opacity: 0,
-      y: -30,
+      scale: 0.3,
+      y: -50,
       duration: 0.8,
       ease: 'power2.in'
     });

@@ -1,0 +1,29 @@
+# vcs-landing-page Development Guidelines
+
+Auto-generated from all feature plans. Last updated: 2026-01-13
+
+## Active Technologies
+
+- JavaScript (ES6+), CSS (Custom Properties) + Tailwind CSS, Vite, existing GSAP animations (001-design-tokens)
+
+## Project Structure
+
+```text
+src/
+tests/
+```
+
+## Commands
+
+npm test && npm run lint
+
+## Code Style
+
+JavaScript (ES6+), CSS (Custom Properties): Follow standard conventions
+
+## Recent Changes
+
+- 001-design-tokens: Added JavaScript (ES6+), CSS (Custom Properties) + Tailwind CSS, Vite, existing GSAP animations
+
+<!-- MANUAL ADDITIONS START -->
+<!-- MANUAL ADDITIONS END -->

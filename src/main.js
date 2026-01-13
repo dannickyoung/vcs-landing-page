@@ -21,6 +21,7 @@ gsap.registerPlugin(ScrollTrigger);
 // Initialize router
 const router = new Router();
 router.setGSAP(gsap);
+router.setScrollTrigger(ScrollTrigger);
 
 
 // Welcome screen animation
@@ -1533,8 +1534,40 @@ async function initSectionOneAnimations() {
   }, 200);
 }
 
+// Global references for rolodex cleanup
+let rolodexCleanup = {
+  interval: null,
+  mouseEnterHandler: null,
+  mouseLeaveHandler: null,
+  container: null
+};
+
+// Cleanup function for rolodex animation
+function cleanupBeliefsRolodex() {
+  if (rolodexCleanup.interval) {
+    clearInterval(rolodexCleanup.interval);
+    rolodexCleanup.interval = null;
+  }
+  
+  if (rolodexCleanup.container && rolodexCleanup.mouseEnterHandler) {
+    rolodexCleanup.container.removeEventListener('mouseenter', rolodexCleanup.mouseEnterHandler);
+    rolodexCleanup.container.removeEventListener('mouseleave', rolodexCleanup.mouseLeaveHandler);
+    rolodexCleanup.mouseEnterHandler = null;
+    rolodexCleanup.mouseLeaveHandler = null;
+    rolodexCleanup.container = null;
+  }
+}
+
+// Global cleanup function for page animations (called on route transitions)
+window.cleanupPageAnimations = function() {
+  cleanupBeliefsRolodex();
+};
+
 // Initialize Beliefs Rolodex Animation
 function initBeliefsRolodex() {
+  // Clean up any existing rolodex animation first
+  cleanupBeliefsRolodex();
+  
   const rolodexContainer = document.getElementById('beliefs-rolodex');
   if (!rolodexContainer) return;
 
@@ -1542,36 +1575,44 @@ function initBeliefsRolodex() {
   if (beliefItems.length === 0) return;
 
   let currentIndex = 0;
-  let autoRotateInterval = null;
 
   function showNextItem() {
     // Remove active class from current item
-    beliefItems[currentIndex].classList.remove('active');
+    if (beliefItems[currentIndex]) {
+      beliefItems[currentIndex].classList.remove('active');
+    }
     
     // Move to next item
     currentIndex = (currentIndex + 1) % beliefItems.length;
     
     // Add active class to next item
-    beliefItems[currentIndex].classList.add('active');
+    if (beliefItems[currentIndex]) {
+      beliefItems[currentIndex].classList.add('active');
+    }
   }
 
   function startAutoRotate() {
-    if (autoRotateInterval) {
-      clearInterval(autoRotateInterval);
+    if (rolodexCleanup.interval) {
+      clearInterval(rolodexCleanup.interval);
     }
     
     // Rotate every 3 seconds
-    autoRotateInterval = setInterval(() => {
+    rolodexCleanup.interval = setInterval(() => {
       showNextItem();
     }, 3000);
   }
 
   function stopAutoRotate() {
-    if (autoRotateInterval) {
-      clearInterval(autoRotateInterval);
-      autoRotateInterval = null;
+    if (rolodexCleanup.interval) {
+      clearInterval(rolodexCleanup.interval);
+      rolodexCleanup.interval = null;
     }
   }
+
+  // Store handlers for cleanup
+  rolodexCleanup.mouseEnterHandler = stopAutoRotate;
+  rolodexCleanup.mouseLeaveHandler = startAutoRotate;
+  rolodexCleanup.container = rolodexContainer;
 
   // Pause on hover
   rolodexContainer.addEventListener('mouseenter', stopAutoRotate);

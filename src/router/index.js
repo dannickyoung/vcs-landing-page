@@ -4,11 +4,16 @@ class Router {
     this.routes = {};
     this.currentRoute = '';
     this.gsap = null; // Will be set from main.js
+    this.scrollTrigger = null; // Will be set from main.js
     this.init();
   }
   
   setGSAP(gsapInstance) {
     this.gsap = gsapInstance;
+  }
+  
+  setScrollTrigger(scrollTriggerInstance) {
+    this.scrollTrigger = scrollTriggerInstance;
   }
 
   init() {
@@ -88,6 +93,20 @@ class Router {
   }
 
   async transitionOut() {
+    // Clean up ScrollTrigger instances to prevent errors
+    if (this.scrollTrigger) {
+      const allTriggers = this.scrollTrigger.getAll();
+      allTriggers.forEach(trigger => {
+        trigger.kill();
+      });
+    }
+    
+    // Clean up any page-specific animations/intervals
+    // This will be called from main.js if needed
+    if (typeof window.cleanupPageAnimations === 'function') {
+      window.cleanupPageAnimations();
+    }
+    
     const mainContent = document.getElementById('app-content');
     if (mainContent && mainContent.innerHTML.trim() !== '' && this.gsap) {
       return new Promise((resolve) => {

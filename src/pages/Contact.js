@@ -37,30 +37,16 @@ export function renderContact() {
               <input type="hidden" name="from_name" value="VICI Studio Contact Form">
               
               <div>
-                <label for="firstName" class="block text-xs md:text-sm mb-2 uppercase tracking-wider contact-form-label">FIRST NAME *</label>
+                <label for="fullName" class="block text-xs md:text-sm mb-2 uppercase tracking-wider contact-form-label">FULL NAME *</label>
                 <input 
                   type="text" 
-                  id="firstName" 
-                  name="firstName" 
+                  id="fullName" 
+                  name="name" 
                   required
                   class="w-full bg-transparent border-b pb-2 text-sm md:text-base placeholder-opacity-30 focus:outline-none transition-colors contact-input"
                   placeholder=""
                   style="background-color: transparent !important;"
                 >
-              </div>
-
-              <div>
-                <label for="lastName" class="block text-xs md:text-sm mb-2 uppercase tracking-wider contact-form-label">LAST NAME *</label>
-                <input 
-                  type="text" 
-                  id="lastName" 
-                  name="lastName" 
-                  required
-                  class="w-full bg-transparent border-b pb-2 text-sm md:text-base placeholder-opacity-30 focus:outline-none transition-colors contact-input"
-                  placeholder=""
-                  style="background-color: transparent !important;"
-                >
-                <input type="hidden" name="name" id="fullName" value="">
               </div>
 
               <div>

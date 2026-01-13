@@ -921,13 +921,6 @@ async function initApp() {
           // Get form data
           const formData = new FormData(form);
           
-          // Combine firstName and lastName into name field
-          const firstName = formData.get('firstName') || '';
-          const lastName = formData.get('lastName') || '';
-          if (firstName || lastName) {
-            formData.set('name', `${firstName} ${lastName}`.trim());
-          }
-          
           // Send form to Web3Forms
           const response = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
@@ -966,8 +959,6 @@ async function initApp() {
   // Exit welcome screen after initial route is loaded (always exit, even if there were errors)
   exitWelcomeScreen();
   
-  // Initialize cookie notice
-  initCookieNotice();
   
   // Initialize scroll to top button
   initScrollToTop();
@@ -1768,44 +1759,6 @@ function initNavigation() {
   setInterval(updateTimes, 60000);
 }
 
-// Cookie notice
-function initCookieNotice() {
-  const cookieNotice = document.getElementById('cookie-notice');
-  const acceptCookies = document.getElementById('accept-cookies');
-  const rejectCookies = document.getElementById('reject-cookies');
-
-  if (!localStorage.getItem('cookiesDecision') && cookieNotice) {
-    cookieNotice.classList.remove('hidden');
-    gsap.fromTo(cookieNotice,
-      { y: 100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.5, delay: 1, ease: 'power2.out' }
-    );
-  }
-
-  acceptCookies?.addEventListener('click', () => {
-    localStorage.setItem('cookiesDecision', 'accepted');
-    if (cookieNotice) {
-      gsap.to(cookieNotice, {
-        y: 100,
-        opacity: 0,
-        duration: 0.3,
-        onComplete: () => cookieNotice.classList.add('hidden')
-      });
-    }
-  });
-
-  rejectCookies?.addEventListener('click', () => {
-    localStorage.setItem('cookiesDecision', 'rejected');
-    if (cookieNotice) {
-      gsap.to(cookieNotice, {
-        y: 100,
-        opacity: 0,
-        duration: 0.3,
-        onComplete: () => cookieNotice.classList.add('hidden')
-      });
-    }
-  });
-}
 
 // Inject global style to hide branding
 function injectBrandingHideStyle() {

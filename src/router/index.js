@@ -139,17 +139,17 @@ class Router {
       }
       
       return new Promise((resolve) => {
-        // Fade in overlay as content fades out (faster)
+        // Fade in overlay as content fades out
         this.gsap.to(overlay, {
           opacity: 1,
-          duration: 0.1,
+          duration: 0.2,
           ease: 'power2.in',
           onComplete: () => {
-            // Fade out content (faster)
+            // Fade out content
             this.gsap.to(mainContent, {
               opacity: 0,
               y: 20,
-              duration: 0.1,
+              duration: 0.2,
               ease: 'power2.in',
               onComplete: resolve
             });
@@ -184,27 +184,31 @@ class Router {
         // Use requestAnimationFrame to ensure styles are applied before animation
         return new Promise((resolve) => {
           requestAnimationFrame(() => {
-            // Fade out overlay immediately as new content fades in (overlap for speed)
-            if (overlay) {
-              this.gsap.to(overlay, {
-                opacity: 0,
-                duration: 0.15,
-                ease: 'power2.out',
-                onComplete: () => {
-                  if (overlay && overlay.parentNode) {
-                    overlay.remove();
-                  }
-                }
-              });
-            }
-            
-            // Fade in new content (faster, no delay)
+            // Fade in new content
             this.gsap.to(mainContent, {
               opacity: 1,
               y: 0,
-              duration: 0.3,
+              duration: 0.6,
               ease: 'power2.out',
-              onComplete: resolve
+              delay: 0.1,
+              onComplete: () => {
+                // Fade out overlay after content is visible
+                if (overlay) {
+                  this.gsap.to(overlay, {
+                    opacity: 0,
+                    duration: 0.2,
+                    ease: 'power2.out',
+                    onComplete: () => {
+                      if (overlay && overlay.parentNode) {
+                        overlay.remove();
+                      }
+                      resolve();
+                    }
+                  });
+                } else {
+                  resolve();
+                }
+              }
             });
           });
         });

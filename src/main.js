@@ -156,8 +156,12 @@ async function initApp() {
         // Initialize navigation after hero is rendered
         initNavigation();
         initMobileMenu();
-        // Initialize ColorBends background
-        mountColorBends('color-bends-container');
+        // Initialize ColorBends background (with error handling)
+        try {
+          mountColorBends('color-bends-container');
+        } catch (error) {
+          console.error('Failed to mount ColorBends:', error);
+        }
       }
     } catch (error) {
       console.error('Error loading home page:', error);
@@ -579,9 +583,13 @@ async function initApp() {
   }
   
   // Handle initial route after everything is set up
-  await router.handleInitialRoute();
+  try {
+    await router.handleInitialRoute();
+  } catch (error) {
+    console.error('Error handling initial route:', error);
+  }
   
-  // Exit welcome screen after initial route is loaded
+  // Exit welcome screen after initial route is loaded (always exit, even if there were errors)
   exitWelcomeScreen();
   
   // Initialize cookie notice

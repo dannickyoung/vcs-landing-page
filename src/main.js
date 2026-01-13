@@ -101,7 +101,7 @@ function exitWelcomeScreen() {
     gsap.to(welcomeBrand, {
       x: -80,
       opacity: 0,
-      scale: 0.8,
+      scale: 0.2,
       duration: 0.8,
       ease: 'power2.in'
     });
@@ -109,14 +109,14 @@ function exitWelcomeScreen() {
     gsap.to(welcomeLocation, {
       x: 80,
       opacity: 0,
-      scale: 0.8,
+      scale: 0.2,
       duration: 0.8,
       ease: 'power2.in'
     });
     
     gsap.to(welcomeSeparator, {
       opacity: 0,
-      scale: 0.8,
+      scale: 0.2,
       duration: 0.8,
       ease: 'power2.in'
     });

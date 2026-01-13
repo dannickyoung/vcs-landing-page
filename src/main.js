@@ -120,7 +120,7 @@ function exitWelcomeScreen() {
     
     gsap.to(welcomeScreen, {
       opacity: 0,
-      duration: 0.8,
+      duration: 1.2,
       ease: 'power2.in',
       onComplete: () => {
         welcomeScreen.style.display = 'none';

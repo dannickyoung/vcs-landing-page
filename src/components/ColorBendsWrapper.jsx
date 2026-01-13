@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { ColorBends } from '@appletosolutions/reactbits';
+import ColorBends from '@/components/ui/ColorBends/ColorBends';
 
 export function mountColorBends(containerId) {
   try {
@@ -12,21 +12,20 @@ export function mountColorBends(containerId) {
     
     const root = createRoot(container);
     root.render(
-      <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-        <ColorBends
-          rotation={45}
-          speed={0.2}
-          colors={["#ffebeb","#c00218","#ff8f9a"]}
-          transparent
-          autoRotate={0}
-          scale={1}
-          frequency={1}
-          warpStrength={1}
-          mouseInfluence={1}
-          parallax={0.5}
-          noise={0.1}
-        />
-      </div>
+      <ColorBends
+        rotation={45}
+        speed={0.2}
+        colors={["#ffebeb","#c00218","#ff8f9a"]}
+        transparent
+        autoRotate={0}
+        scale={1}
+        frequency={1}
+        warpStrength={1}
+        mouseInfluence={1}
+        parallax={0.5}
+        noise={0.1}
+        style={{ width: '100%', height: '100%', position: 'relative' }}
+      />
     );
     
     return root;

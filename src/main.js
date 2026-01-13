@@ -156,12 +156,14 @@ async function initApp() {
         // Initialize navigation after hero is rendered
         initNavigation();
         initMobileMenu();
-        // Initialize ColorBends background (with error handling)
-        try {
-          mountColorBends('color-bends-container');
-        } catch (error) {
-          console.error('Failed to mount ColorBends:', error);
-        }
+        // Initialize ColorBends background (with error handling, non-blocking)
+        setTimeout(() => {
+          try {
+            mountColorBends('color-bends-container');
+          } catch (error) {
+            console.error('Failed to mount ColorBends:', error);
+          }
+        }, 100);
       }
     } catch (error) {
       console.error('Error loading home page:', error);

@@ -7,7 +7,7 @@ export function renderHome(currentRoute = 'home') {
       <div 
         id="color-bends-container"
         class="absolute inset-0 w-full h-full z-0"
-        style="width: 100%; height: 100%; min-height: 100vh;"
+        style="width: 100%; height: 100%; min-height: 100vh; pointer-events: auto;"
       ></div>
       
       <!-- Bottom Gradient Overlay to Hide Branding -->

@@ -283,9 +283,10 @@ export default function ColorBends({
       pointerTargetRef.current.set(x, y);
     };
 
-    container.addEventListener('pointermove', handlePointerMove);
+    // Attach to window to ensure it works even when other elements are on top
+    window.addEventListener('pointermove', handlePointerMove);
     return () => {
-      container.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointermove', handlePointerMove);
     };
   }, []);
 

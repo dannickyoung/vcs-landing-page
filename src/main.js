@@ -154,8 +154,21 @@ function ensureFooter() {
 // Initialize app
 async function initApp() {
   
-  // Initialize welcome screen first
-  initWelcomeScreen();
+  // Check if we're on the root/home route - only show welcome screen for root
+  const currentPath = window.location.pathname.slice(1);
+  const isRootRoute = !currentPath || currentPath === '' || currentPath === 'home';
+  
+  // Initialize welcome screen only for root route
+  if (isRootRoute) {
+    initWelcomeScreen();
+  } else {
+    // Hide welcome screen immediately for non-root routes
+    const welcomeScreen = document.getElementById('welcome-screen');
+    if (welcomeScreen) {
+      welcomeScreen.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  }
   
   // Render footer (navigation is now in hero section)
   const footerContainer = document.getElementById('footer-container');
@@ -956,8 +969,12 @@ async function initApp() {
     console.error('Error handling initial route:', error);
   }
   
-  // Exit welcome screen after initial route is loaded (always exit, even if there were errors)
-  exitWelcomeScreen();
+  // Exit welcome screen after initial route is loaded (only if it was shown)
+  const finalPath = window.location.pathname.slice(1);
+  const isRootRouteFinal = !finalPath || finalPath === '' || finalPath === 'home';
+  if (isRootRouteFinal) {
+    exitWelcomeScreen();
+  }
   
   
   // Initialize scroll to top button

@@ -97,10 +97,11 @@ function exitWelcomeScreen() {
   const remainingTime = Math.max(0, minDisplayTime - elapsed);
   
   setTimeout(() => {
-    // Exit animation: move away from center
+    // Exit animation: move away from center and scale down
     gsap.to(welcomeBrand, {
       x: -80,
       opacity: 0,
+      scale: 0.8,
       duration: 0.8,
       ease: 'power2.in'
     });
@@ -108,12 +109,14 @@ function exitWelcomeScreen() {
     gsap.to(welcomeLocation, {
       x: 80,
       opacity: 0,
+      scale: 0.8,
       duration: 0.8,
       ease: 'power2.in'
     });
     
     gsap.to(welcomeSeparator, {
       opacity: 0,
+      scale: 0.8,
       duration: 0.8,
       ease: 'power2.in'
     });

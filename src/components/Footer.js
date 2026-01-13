@@ -1,7 +1,7 @@
 // Footer Component - Professional Design Studio Layout
 export function createFooter() {
   return `
-    <footer class="text-vici-white py-12 md:py-16 lg:py-20 px-5 md:px-8 bg-vici-black" id="footer-section">
+    <footer class="text-vici-white py-12 md:py-16 lg:py-20 px-5 md:px-8 bg-vici-black mb-12 md:mb-16 lg:mb-20" id="footer-section">
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row md:justify-between mb-8 md:mb-12 md:items-start">
           <!-- Left Section - Contact Message -->

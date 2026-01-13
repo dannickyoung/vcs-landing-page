@@ -14,6 +14,8 @@ import { renderContact } from './pages/Contact.js';
 import { renderNews } from './pages/News.js'; // About Us page
 import { renderPrivacy } from './pages/Privacy.js';
 import { mountColorBends, getColorBendsConfigForPage } from './components/ColorBendsWrapper.jsx';
+import { createGradualBlur, createGradualBlurSectionHTML } from './components/GradualBlurHelper.js';
+import { mountGradualBlur, mountPageScrollBlur, unmountPageScrollBlur } from './components/GradualBlurWrapper.jsx';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -141,6 +143,11 @@ function ensureFooter() {
     }
     // Re-initialize footer animations
     initFooterAnimations();
+    // Initialize footer navigation scroll behavior
+    initFooterNavigation();
+  } else {
+    // Even if footer exists, re-initialize navigation in case links were updated
+    initFooterNavigation();
   }
 }
 
@@ -969,6 +976,20 @@ async function initApp() {
   initFooterAnimations();
 }
 
+// Ensure footer navigation links scroll to top
+function initFooterNavigation() {
+  // Add click handlers to footer navigation links to ensure scroll to top
+  const footerLinks = document.querySelectorAll('footer a[data-route]');
+  footerLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      // Scroll to top immediately when footer link is clicked
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    });
+  });
+}
+
 // Footer animations
 function initFooterAnimations() {
   const footerItems = document.querySelectorAll('.footer-item');
@@ -1380,6 +1401,20 @@ async function initPageAnimations() {
   setTimeout(() => {
     initScrollRevealAnimations();
   }, 200);
+  
+  // Initialize page scroll blur for all pages
+  setTimeout(() => {
+    mountPageScrollBlur({
+      target: 'page',
+      position: 'bottom',
+      height: '6rem',
+      strength: 2,
+      divCount: 5,
+      curve: 'bezier',
+      exponential: false,
+      opacity: 1
+    });
+  }, 300);
 }
 
 // Universal scroll reveal animation system for all sections
@@ -1532,6 +1567,20 @@ async function initSectionOneAnimations() {
   setTimeout(() => {
     initScrollRevealAnimations();
   }, 200);
+  
+  // Initialize page scroll blur for all pages
+  setTimeout(() => {
+    mountPageScrollBlur({
+      target: 'page',
+      position: 'bottom',
+      height: '6rem',
+      strength: 2,
+      divCount: 5,
+      curve: 'bezier',
+      exponential: false,
+      opacity: 1
+    });
+  }, 300);
 }
 
 // Global references for rolodex cleanup
@@ -1562,6 +1611,9 @@ function cleanupBeliefsRolodex() {
 window.cleanupPageAnimations = function() {
   cleanupBeliefsRolodex();
 };
+
+// Make unmountPageScrollBlur globally available for router cleanup
+window.unmountPageScrollBlur = unmountPageScrollBlur;
 
 // Initialize Beliefs Rolodex Animation
 function initBeliefsRolodex() {

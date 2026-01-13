@@ -73,13 +73,23 @@ class Router {
       const handler = this.routes[path] || this.routes['404'];
       
       if (handler) {
+        // Scroll to top immediately when route changes (before transition)
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        
         // Trigger page transition out
         await this.transitionOut();
+        
+        // Ensure we're still at top after transition out
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
         
         // Load new page
         await handler();
         
-        // Trigger page transition in
+        // Trigger page transition in (which also scrolls to top)
         await this.transitionIn();
       }
     } catch (error) {
@@ -101,6 +111,11 @@ class Router {
       });
     }
     
+    // Clean up page scroll blur
+    if (typeof window.unmountPageScrollBlur === 'function') {
+      window.unmountPageScrollBlur();
+    }
+    
     // Clean up any page-specific animations/intervals
     // This will be called from main.js if needed
     if (typeof window.cleanupPageAnimations === 'function') {
@@ -109,13 +124,36 @@ class Router {
     
     const mainContent = document.getElementById('app-content');
     if (mainContent && mainContent.innerHTML.trim() !== '' && this.gsap) {
+      // Ensure black background is maintained during transition
+      mainContent.style.backgroundColor = '#000000';
+      document.body.style.backgroundColor = '#000000';
+      document.documentElement.style.backgroundColor = '#000000';
+      
+      // Create black overlay to prevent white flash
+      let overlay = document.getElementById('transition-overlay');
+      if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'transition-overlay';
+        overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000000; z-index: 9999; pointer-events: none; opacity: 0;';
+        document.body.appendChild(overlay);
+      }
+      
       return new Promise((resolve) => {
-        this.gsap.to(mainContent, {
-          opacity: 0,
-          y: 20,
-          duration: 0.4,
+        // Fade in overlay as content fades out (faster)
+        this.gsap.to(overlay, {
+          opacity: 1,
+          duration: 0.1,
           ease: 'power2.in',
-          onComplete: resolve
+          onComplete: () => {
+            // Fade out content (faster)
+            this.gsap.to(mainContent, {
+              opacity: 0,
+              y: 20,
+              duration: 0.1,
+              ease: 'power2.in',
+              onComplete: resolve
+            });
+          }
         });
       });
     }
@@ -125,27 +163,61 @@ class Router {
   async transitionIn() {
     const mainContent = document.getElementById('app-content');
     if (mainContent) {
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Scroll to top immediately (before any other operations)
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      
+      // Ensure black background before transition
+      mainContent.style.backgroundColor = '#000000';
+      document.body.style.backgroundColor = '#000000';
+      document.documentElement.style.backgroundColor = '#000000';
       
       if (this.gsap && mainContent.innerHTML.trim() !== '') {
+        // Set initial state immediately to prevent white flash
         mainContent.style.opacity = '0';
         mainContent.style.transform = 'translateY(20px)';
+        mainContent.style.backgroundColor = '#000000';
         
+        const overlay = document.getElementById('transition-overlay');
+        
+        // Use requestAnimationFrame to ensure styles are applied before animation
         return new Promise((resolve) => {
-          this.gsap.to(mainContent, {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            ease: 'power2.out',
-            delay: 0.1,
-            onComplete: resolve
+          requestAnimationFrame(() => {
+            // Fade out overlay immediately as new content fades in (overlap for speed)
+            if (overlay) {
+              this.gsap.to(overlay, {
+                opacity: 0,
+                duration: 0.15,
+                ease: 'power2.out',
+                onComplete: () => {
+                  if (overlay && overlay.parentNode) {
+                    overlay.remove();
+                  }
+                }
+              });
+            }
+            
+            // Fade in new content (faster, no delay)
+            this.gsap.to(mainContent, {
+              opacity: 1,
+              y: 0,
+              duration: 0.3,
+              ease: 'power2.out',
+              onComplete: resolve
+            });
           });
         });
       } else {
         // Fallback if GSAP not loaded or no content
         mainContent.style.opacity = '1';
         mainContent.style.transform = 'translateY(0)';
+        mainContent.style.backgroundColor = '#000000';
+        
+        // Remove overlay if it exists
+        const overlay = document.getElementById('transition-overlay');
+        if (overlay) overlay.remove();
+        
         return Promise.resolve();
       }
     }

@@ -22,8 +22,78 @@ const router = new Router();
 router.setGSAP(gsap);
 
 
+// Welcome screen animation
+let welcomeScreenStartTime = null;
+let welcomeScreenExited = false;
+
+function initWelcomeScreen() {
+  const welcomeScreen = document.getElementById('welcome-screen');
+  const welcomeText = document.getElementById('welcome-text');
+  
+  if (!welcomeScreen || !welcomeText) return;
+  
+  // Prevent body scroll during welcome screen
+  document.body.style.overflow = 'hidden';
+  welcomeScreenStartTime = Date.now();
+  welcomeScreenExited = false;
+  
+  // Intro animation: fade in + slide up
+  gsap.fromTo(welcomeText, 
+    {
+      opacity: 0,
+      y: 30
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power2.out',
+      delay: 0.2
+    }
+  );
+}
+
+function exitWelcomeScreen() {
+  if (welcomeScreenExited) return;
+  
+  const welcomeScreen = document.getElementById('welcome-screen');
+  const welcomeText = document.getElementById('welcome-text');
+  
+  if (!welcomeScreen || !welcomeText) return;
+  
+  welcomeScreenExited = true;
+  
+  // Calculate remaining minimum display time (1.5 seconds)
+  const minDisplayTime = 1500;
+  const elapsed = Date.now() - (welcomeScreenStartTime || Date.now());
+  const remainingTime = Math.max(0, minDisplayTime - elapsed);
+  
+  setTimeout(() => {
+    // Exit animation: fade out + slide up
+    gsap.to(welcomeText, {
+      opacity: 0,
+      y: -30,
+      duration: 0.8,
+      ease: 'power2.in'
+    });
+    
+    gsap.to(welcomeScreen, {
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power2.in',
+      onComplete: () => {
+        welcomeScreen.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+  }, remainingTime);
+}
+
 // Initialize app
 async function initApp() {
+  
+  // Initialize welcome screen first
+  initWelcomeScreen();
   
   // Render footer (navigation is now in hero section)
   const footerContainer = document.getElementById('footer-container');
@@ -468,6 +538,9 @@ async function initApp() {
   
   // Handle initial route after everything is set up
   await router.handleInitialRoute();
+  
+  // Exit welcome screen after initial route is loaded
+  exitWelcomeScreen();
   
   // Initialize cookie notice
   initCookieNotice();

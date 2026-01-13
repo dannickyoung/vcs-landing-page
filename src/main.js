@@ -13,7 +13,7 @@ import { renderTeam } from './pages/Team.js';
 import { renderContact } from './pages/Contact.js';
 import { renderNews } from './pages/News.js'; // About Us page
 import { renderPrivacy } from './pages/Privacy.js';
-import { mountColorBends } from './components/ColorBendsWrapper.jsx';
+import { mountColorBends, getColorBendsConfigForPage } from './components/ColorBendsWrapper.jsx';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -131,6 +131,18 @@ function exitWelcomeScreen() {
   }, remainingTime);
 }
 
+// Helper function to ensure footer is loaded and initialized
+function ensureFooter() {
+  const footerContainer = document.getElementById('footer-container');
+  if (footerContainer) {
+    if (!footerContainer.innerHTML) {
+      footerContainer.innerHTML = createFooter();
+    }
+    // Re-initialize footer animations
+    initFooterAnimations();
+  }
+}
+
 // Initialize app
 async function initApp() {
   
@@ -156,14 +168,33 @@ async function initApp() {
         // Initialize navigation after hero is rendered
         initNavigation();
         initMobileMenu();
+        // Ensure footer is loaded
+        ensureFooter();
         // Initialize ColorBends background (with error handling, non-blocking)
         setTimeout(() => {
           try {
+            // Function to update ColorBends container height
+            const updateColorBendsHeight = () => {
+              const heroSection = document.getElementById('hero-section');
+              const portfolioSection = document.getElementById('portfolio-section');
+              const colorBendsContainer = document.getElementById('color-bends-container');
+              if (heroSection && portfolioSection && colorBendsContainer) {
+                const totalHeight = heroSection.offsetHeight + portfolioSection.offsetHeight;
+                colorBendsContainer.style.height = `${totalHeight}px`;
+              }
+            };
+            
+            // Initial height calculation
+            updateColorBendsHeight();
+            
+            // Update on window resize to handle all breakpoints
+            window.addEventListener('resize', updateColorBendsHeight);
+            
             mountColorBends('color-bends-container');
           } catch (error) {
             console.error('Failed to mount ColorBends:', error);
           }
-        }, 100);
+        }, 200);
       }
     } catch (error) {
       console.error('Error loading home page:', error);
@@ -284,8 +315,19 @@ async function initApp() {
         initNavigation();
       initMobileMenu();
       initWorkFilters();
-      // Initialize Unicorn Studio for work page
-      initUnicornStudioWork();
+        // Initialize SectionOne animations
+        await initSectionOneAnimations();
+        // Ensure footer is loaded
+        ensureFooter();
+        // Initialize ColorBends for work page
+      setTimeout(() => {
+        try {
+          const config = getColorBendsConfigForPage('work');
+          mountColorBends('color-bends-container-section-one', config);
+        } catch (error) {
+          console.error('Failed to mount ColorBends:', error);
+        }
+      }, 100);
     }
   });
 
@@ -309,8 +351,19 @@ async function initApp() {
         updateFooterLinks('work');
         initNavigation();
         initMobileMenu();
-        // Initialize Unicorn Studio for work page
-        initUnicornStudioWork();
+        // Initialize SectionOne animations
+        await initSectionOneAnimations();
+        // Ensure footer is loaded
+        ensureFooter();
+        // Initialize ColorBends for project page with randomized colors and rotation
+        setTimeout(() => {
+          try {
+            const config = getColorBendsConfigForPage(currentRoute);
+            mountColorBends('color-bends-container-section-one', { ...config, scale: 0.5 });
+          } catch (error) {
+            console.error('Failed to mount ColorBends:', error);
+          }
+        }, 100);
       }
     });
   });
@@ -324,8 +377,19 @@ async function initApp() {
         updateFooterLinks(currentRoute);
         initNavigation();
       initMobileMenu();
-      // Initialize Unicorn Studio for services page
-      initUnicornStudioSectionOne('qn4S1BwsQmlLqLzudSQx');
+      // Initialize SectionOne animations
+      await initSectionOneAnimations();
+      // Ensure footer is loaded
+      ensureFooter();
+      // Initialize ColorBends for services page
+      setTimeout(() => {
+        try {
+          const config = getColorBendsConfigForPage('services');
+          mountColorBends('color-bends-container-section-one', config);
+        } catch (error) {
+          console.error('Failed to mount ColorBends:', error);
+        }
+      }, 100);
     }
   });
 
@@ -338,8 +402,19 @@ async function initApp() {
         updateFooterLinks(currentRoute);
         initNavigation();
       initMobileMenu();
-      // Initialize Unicorn Studio for team page
-      initUnicornStudioSectionOne('QZDPom0n1lRI4LwoRHVV');
+      // Initialize SectionOne animations
+      await initSectionOneAnimations();
+      // Ensure footer is loaded
+      ensureFooter();
+      // Initialize ColorBends for team page
+      setTimeout(() => {
+        try {
+          const config = getColorBendsConfigForPage('team');
+          mountColorBends('color-bends-container-section-one', config);
+        } catch (error) {
+          console.error('Failed to mount ColorBends:', error);
+        }
+      }, 100);
     }
   });
 
@@ -353,8 +428,20 @@ async function initApp() {
         initNavigation();
       initMobileMenu();
       initContactForm();
-      // Initialize Unicorn Studio for contact page
-      initUnicornStudioSectionOne('f6xgIjnKSrj2Y8hxLDvj');
+      initContactColorTransition();
+      // Initialize SectionOne animations
+      await initSectionOneAnimations();
+      // Ensure footer is loaded
+      ensureFooter();
+      // Initialize ColorBends for contact page
+      setTimeout(() => {
+        try {
+          const config = getColorBendsConfigForPage('contact');
+          mountColorBends('color-bends-container-section-one', config);
+        } catch (error) {
+          console.error('Failed to mount ColorBends:', error);
+        }
+      }, 100);
     }
   });
 
@@ -367,8 +454,19 @@ async function initApp() {
         updateFooterLinks(currentRoute);
         initNavigation();
       initMobileMenu();
-      // Initialize Unicorn Studio for about page
-      initUnicornStudioSectionOne('iqAn0SO7cFo2O3Z5dZw0');
+      // Initialize SectionOne animations
+      await initSectionOneAnimations();
+      // Ensure footer is loaded
+      ensureFooter();
+      // Initialize ColorBends for about page
+      setTimeout(() => {
+        try {
+          const config = getColorBendsConfigForPage('about');
+          mountColorBends('color-bends-container-section-one', config);
+        } catch (error) {
+          console.error('Failed to mount ColorBends:', error);
+        }
+      }, 100);
     }
   });
 
@@ -380,6 +478,12 @@ async function initApp() {
       updateFooterLinks(currentRoute);
       initNavigation();
       initMobileMenu();
+      // Ensure footer is loaded
+      ensureFooter();
+      // Initialize scroll reveal animations
+      setTimeout(() => {
+        initScrollRevealAnimations();
+      }, 200);
     }
   });
 
@@ -392,6 +496,12 @@ async function initApp() {
         updateFooterLinks(currentRoute);
         initNavigation();
       initMobileMenu();
+      // Ensure footer is loaded
+      ensureFooter();
+      // Initialize scroll reveal animations
+      setTimeout(() => {
+        initScrollRevealAnimations();
+      }, 200);
     }
   });
 
@@ -404,13 +514,13 @@ async function initApp() {
       button.addEventListener('click', () => {
         const filter = button.getAttribute('data-filter');
         
-        // Update active button
+        // Update active button with smooth animation
         filterButtons.forEach(btn => {
-          btn.classList.remove('active', 'border-vici-red', 'text-vici-white');
-          btn.classList.add('border-transparent', 'text-vici-white/60');
+          btn.classList.remove('active', 'text-vici-black');
+          btn.classList.add('text-vici-black/60');
         });
-        button.classList.add('active', 'border-vici-red', 'text-vici-white');
-        button.classList.remove('border-transparent', 'text-vici-white/60');
+        button.classList.add('active', 'text-vici-black');
+        button.classList.remove('text-vici-black/60');
 
         // Filter projects
         projectItems.forEach(item => {
@@ -429,8 +539,255 @@ async function initApp() {
             }, 300);
           }
         });
+
+        // Refresh ScrollTrigger after filtering to ensure footer animations work
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+          // Re-initialize scroll reveal animations for newly visible content
+          initScrollRevealAnimations();
+        }, 350);
       });
     });
+  }
+
+  // Initialize Contact page color transition
+  function initContactColorTransition() {
+    const section = document.getElementById('contact-section');
+    const spacer = document.getElementById('contact-scroll-spacer');
+    
+    if (!section || !spacer) return;
+
+    // Store the scroll position when section becomes sticky
+    let stickyStartScroll = null;
+    const windowHeight = window.innerHeight;
+    
+    // Throttle function for scroll performance
+    let ticking = false;
+    
+    function updateColorTransition() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const rect = section.getBoundingClientRect();
+      
+      // Detect when section top is exactly at viewport top (or very close, within 1px)
+      // This ensures section is fully in viewport before transition starts
+      if (rect.top <= 1 && rect.top >= -1 && stickyStartScroll === null) {
+        stickyStartScroll = scrollTop;
+      }
+      
+      // Reset if section is no longer at viewport top
+      if (rect.top > 1) {
+        stickyStartScroll = null;
+      }
+      
+      let progress = 0;
+      
+      if (stickyStartScroll === null) {
+        // Section hasn't reached viewport top yet - stay black
+        progress = 0;
+      } else {
+        // Section is sticky - calculate progress based on scroll distance
+        const scrollDistance = scrollTop - stickyStartScroll;
+        // Add a small delay (0.1 viewport height) before transition starts
+        const delayDistance = windowHeight * 0.1;
+        const adjustedDistance = Math.max(0, scrollDistance - delayDistance);
+        // Transition over 1 viewport height (after the delay)
+        const rawProgress = Math.min(adjustedDistance / windowHeight, 1);
+        
+        // Snap to 2 discrete states: black (0) or white (1)
+        // Snap at 50% threshold
+        if (rawProgress < 0.5) {
+          progress = 0; // Black
+        } else {
+          progress = 1; // White
+        }
+      }
+      
+      // Clamp between 0 and 1
+      progress = Math.min(Math.max(progress, 0), 1);
+      
+      // Interpolate background color: black (0,0,0) to white (255,255,255)
+      const bgR = Math.round(progress * 255);
+      const bgG = Math.round(progress * 255);
+      const bgB = Math.round(progress * 255);
+      section.style.backgroundColor = `rgb(${bgR}, ${bgG}, ${bgB})`;
+      
+      // Interpolate text color: white (255,255,255) to black (0,0,0)
+      const textR = Math.round((1 - progress) * 255);
+      const textG = Math.round((1 - progress) * 255);
+      const textB = Math.round((1 - progress) * 255);
+      const textColor = `rgb(${textR}, ${textG}, ${textB})`;
+      const textColor80 = `rgba(${textR}, ${textG}, ${textB}, 0.8)`;
+      
+      // Update heading
+      const heading = section.querySelector('.contact-heading');
+      if (heading) {
+        heading.style.color = textColor;
+      }
+      
+      // Update verb based on state (snap to 2 states)
+      const verbElement = document.getElementById('contact-verb');
+      if (verbElement) {
+        const currentVerb = verbElement.textContent.trim();
+        let newVerb = '';
+        
+        if (progress < 0.5) {
+          newVerb = 'build';
+        } else {
+          newVerb = 'create';
+        }
+        
+        // Only update if verb changed and trigger animation
+        if (currentVerb !== newVerb) {
+          // Fade out first
+          verbElement.style.opacity = '0';
+          verbElement.style.transform = 'translateY(10px)';
+          
+          // Update text after a brief delay
+          setTimeout(() => {
+            verbElement.textContent = newVerb;
+            // Fade in with animation
+            verbElement.style.opacity = '1';
+            verbElement.style.transform = 'translateY(0)';
+          }, 150);
+        }
+      }
+      
+      // Update CONTACT label and arrow - fade out in light mode
+      const contactLabel = section.querySelector('.contact-label');
+      const contactArrow = section.querySelector('.contact-arrow');
+      const contactLabelOpacity = progress < 0.5 ? 1 : 0; // 0% opacity in light mode
+      if (contactLabel) {
+        contactLabel.style.color = '#C00218'; // Keep red
+        contactLabel.style.opacity = contactLabelOpacity;
+      }
+      if (contactArrow) {
+        contactArrow.style.color = '#C00218'; // Keep red
+        contactArrow.style.opacity = contactLabelOpacity;
+      }
+      
+      // Update labels
+      const labels = section.querySelectorAll('.contact-form-label');
+      labels.forEach(label => {
+        label.style.color = textColor80;
+      });
+      
+      // Update inputs
+      const inputs = section.querySelectorAll('.contact-input');
+      inputs.forEach(input => {
+        input.style.color = textColor;
+        const borderOpacity = 0.2 + (progress * 0.1);
+        const borderColor = `rgba(${textR}, ${textG}, ${textB}, ${borderOpacity})`;
+        input.style.borderColor = borderColor;
+      });
+      
+      // Update form and info containers visibility
+      const formContainer = document.getElementById('contact-form-container');
+      const infoContainer = document.getElementById('contact-info-container');
+      
+      if (formContainer && infoContainer) {
+        if (progress < 0.5) {
+          // Dark mode: show form, hide info
+          formContainer.style.opacity = '1';
+          formContainer.style.pointerEvents = 'auto';
+          formContainer.style.position = 'relative';
+          formContainer.style.zIndex = '2';
+          infoContainer.style.opacity = '0';
+          infoContainer.style.pointerEvents = 'none';
+          infoContainer.style.position = 'absolute';
+          infoContainer.style.zIndex = '1';
+        } else {
+          // Light mode: hide form, show info
+          formContainer.style.opacity = '0';
+          formContainer.style.pointerEvents = 'none';
+          formContainer.style.position = 'absolute';
+          formContainer.style.zIndex = '1';
+          infoContainer.style.opacity = '1';
+          infoContainer.style.pointerEvents = 'auto';
+          infoContainer.style.position = 'relative';
+          infoContainer.style.zIndex = '2';
+        }
+        
+        // Update info section text colors
+        const infoTexts = infoContainer.querySelectorAll('.contact-info-text');
+        infoTexts.forEach(text => {
+          text.style.color = textColor80;
+        });
+        
+        const infoLinks = infoContainer.querySelectorAll('.contact-info-link');
+        infoLinks.forEach(link => {
+          link.style.color = textColor;
+        });
+        
+        const infoBorders = infoContainer.querySelectorAll('.contact-info-border');
+        infoBorders.forEach(border => {
+          border.style.borderColor = `rgba(${textR}, ${textG}, ${textB}, 1)`;
+        });
+      }
+      
+      // Update button - follow standard-button logic
+      const button = section.querySelector('.contact-button');
+      if (button) {
+        // Standard button logic:
+        // Dark mode (progress < 0.5): white border/text, hover: white bg + black text
+        // Light mode (progress >= 0.5): black border/text, hover: black bg + white text
+        if (progress < 0.5) {
+          // Dark mode - white border and text
+          button.style.borderColor = '#ffffff';
+          button.style.color = '#ffffff';
+          button.style.backgroundColor = 'transparent';
+        } else {
+          // Light mode - black border and text
+          button.style.borderColor = '#000000';
+          button.style.color = '#000000';
+          button.style.backgroundColor = 'transparent';
+        }
+        
+        // Hover state is handled by CSS (.standard-button:hover)
+        // But we need to override for the transition
+        button.onmouseenter = function() {
+          if (progress < 0.5) {
+            // Dark mode hover: white bg, black text
+            this.style.backgroundColor = '#ffffff';
+            this.style.color = '#000000';
+          } else {
+            // Light mode hover: black bg, white text
+            this.style.backgroundColor = '#000000';
+            this.style.color = '#ffffff';
+          }
+        };
+        button.onmouseleave = function() {
+          this.style.backgroundColor = 'transparent';
+          if (progress < 0.5) {
+            this.style.color = '#ffffff';
+          } else {
+            this.style.color = '#000000';
+          }
+        };
+      }
+      
+      ticking = false;
+    }
+    
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateColorTransition);
+        ticking = true;
+      }
+    }
+    
+    // Initial state
+    setTimeout(() => {
+      updateColorTransition();
+    }, 100);
+    
+    // Listen to scroll events
+    window.addEventListener('scroll', onScroll, { passive: true });
+    
+    // Also update on resize
+    window.addEventListener('resize', () => {
+      stickyStartScroll = null; // Reset on resize
+      setTimeout(updateColorTransition, 100);
+    }, { passive: true });
   }
 
   // Initialize Contact form with Web3Forms
@@ -555,6 +912,13 @@ async function initApp() {
         try {
           // Get form data
           const formData = new FormData(form);
+          
+          // Combine firstName and lastName into name field
+          const firstName = formData.get('firstName') || '';
+          const lastName = formData.get('lastName') || '';
+          if (firstName || lastName) {
+            formData.set('name', `${firstName} ${lastName}`.trim());
+          }
           
           // Send form to Web3Forms
           const response = await fetch('https://api.web3forms.com/submit', {
@@ -731,6 +1095,18 @@ function initPortfolioScroll() {
     
     const itemHeight = scrollContainer.clientHeight;
     const nextIndex = (currentIndex + 1) % imageItems.length;
+    
+    // Handle loop transition from last to first item smoothly
+    if (nextIndex === 0 && currentIndex === imageItems.length - 1) {
+      // When looping from last to first, instantly reset to top without animation
+      scrollContainer.scrollTop = 0;
+      // Update tracking immediately
+      currentIndex = 0;
+      updatePortfolioTracking();
+      // Small delay before next auto-scroll to make the loop feel natural
+      return;
+    }
+    
     const targetScroll = nextIndex * itemHeight;
     
     // Use requestAnimationFrame for smoother scrolling
@@ -815,9 +1191,143 @@ function initPortfolioScroll() {
 }
 
 
+// Initialize navigation toggle (hamburger to X animation)
+function initNavigationToggle() {
+  const navToggle = document.getElementById('nav-menu-toggle');
+  const navLinksContainer = document.getElementById('nav-links-container');
+  const hamburgerLines = document.querySelectorAll('.hamburger-line');
+  const menuText = navToggle?.querySelector('span');
+  
+  if (!navToggle || !navLinksContainer || hamburgerLines.length !== 2) return;
+  
+  // Set initial state: two vertical lines side by side, centered
+  gsap.set(hamburgerLines[0], {
+    xPercent: -50,
+    yPercent: -50,
+    x: -4,
+    rotation: 0
+  });
+  
+  gsap.set(hamburgerLines[1], {
+    xPercent: -50,
+    yPercent: -50,
+    x: 4,
+    rotation: 0
+  });
+  
+  let isOpen = false;
+  
+  navToggle.addEventListener('click', () => {
+    isOpen = !isOpen;
+    
+    // Create a timeline for smooth, coordinated animations
+    const tl = gsap.timeline();
+    
+    if (isOpen) {
+      // Remove hidden class immediately so element is in DOM for animation
+      navLinksContainer.classList.remove('hidden');
+      
+      // Start fading out menu text and fading in nav links simultaneously for seamless transition
+      if (menuText) {
+        tl.to(menuText, {
+          opacity: 0,
+          duration: 0.25,
+          ease: 'sine.inOut'
+        }, 0);
+      }
+      
+      // Fade in nav links starting slightly before menu text fully fades (overlap for seamlessness)
+      tl.to(navLinksContainer, {
+        opacity: 1,
+        duration: 0.35,
+        ease: 'sine.inOut'
+      }, 0.05);
+      
+      // Animate hamburger lines to X - slightly longer duration for smoother feel
+      tl.to(hamburgerLines[0], {
+        xPercent: -50,
+        yPercent: -50,
+        x: 0,
+        rotation: 45,
+        duration: 0.35,
+        ease: 'sine.inOut'
+      }, 0);
+      
+      tl.to(hamburgerLines[1], {
+        xPercent: -50,
+        yPercent: -50,
+        x: 0,
+        rotation: -45,
+        duration: 0.35,
+        ease: 'sine.inOut'
+      }, 0);
+    } else {
+      // Start fading out nav links and fading in menu text simultaneously
+      tl.to(navLinksContainer, {
+        opacity: 0,
+        duration: 0.3,
+        ease: 'sine.inOut',
+        onComplete: () => {
+          navLinksContainer.classList.add('hidden');
+        }
+      }, 0);
+      
+      // Fade in menu text starting slightly before nav links fully fade (overlap for seamlessness)
+      if (menuText) {
+        tl.to(menuText, {
+          opacity: 1,
+          duration: 0.3,
+          ease: 'sine.inOut'
+        }, 0.05);
+      }
+      
+      // Animate hamburger lines back to vertical - coordinated with fade transitions
+      tl.to(hamburgerLines[0], {
+        xPercent: -50,
+        yPercent: -50,
+        x: -4,
+        rotation: 0,
+        duration: 0.35,
+        ease: 'sine.inOut'
+      }, 0);
+      
+      tl.to(hamburgerLines[1], {
+        xPercent: -50,
+        yPercent: -50,
+        x: 4,
+        rotation: 0,
+        duration: 0.35,
+        ease: 'sine.inOut'
+      }, 0);
+    }
+  });
+}
+
 // Initialize page-specific animations
 async function initPageAnimations() {
   await new Promise(resolve => setTimeout(resolve, 100));
+  
+  // Navigation bar animation (first element to appear)
+  const mainNav = document.getElementById('main-nav');
+  if (mainNav) {
+    mainNav.style.willChange = 'opacity, transform';
+    gsap.fromTo(mainNav,
+      { opacity: 0, y: -20 },
+      { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.8, 
+        ease: 'power2.out', 
+        delay: 0.1,
+        onComplete: () => {
+          mainNav.style.willChange = 'auto'; // Remove will-change after animation
+        }
+      }
+    );
+  }
+  
+  // Initialize navigation toggle
+  initNavigationToggle();
   
   // Hero title animation (optimized - use will-change)
   const heroTitle = document.querySelector('.hero-title');
@@ -864,8 +1374,215 @@ async function initPageAnimations() {
   
   // Initialize portfolio scroll tracking (homepage only)
   initPortfolioScroll();
+  
+  // Initialize scroll reveal animations for all sections
+  setTimeout(() => {
+    initScrollRevealAnimations();
+  }, 200);
 }
 
+// Universal scroll reveal animation system for all sections
+function initScrollRevealAnimations() {
+  // Kill any existing section-reveal ScrollTriggers to avoid duplicates
+  const existingTriggers = ScrollTrigger.getAll();
+  existingTriggers.forEach(trigger => {
+    if (trigger.vars && trigger.vars.trigger) {
+      const triggerElement = trigger.vars.trigger;
+      if (triggerElement.classList && triggerElement.classList.contains('section-reveal')) {
+        trigger.kill();
+      }
+    }
+  });
+
+  // Find all sections
+  const sections = document.querySelectorAll('section');
+  
+  sections.forEach((section) => {
+    // Skip sections that should not animate (like hero sections that animate on load)
+    if (section.id === 'hero-section' || 
+        section.classList.contains('portfolio-section') ||
+        section.classList.contains('no-reveal') ||
+        section.hasAttribute('data-no-reveal')) {
+      return;
+    }
+
+    // Add marker class for tracking
+    section.classList.add('section-reveal');
+
+    // Get all direct children that should animate
+    let children = Array.from(section.children).filter(child => {
+      // Skip script tags, style tags, and elements that are already animated
+      return !child.tagName.match(/^(SCRIPT|STYLE)$/i) && 
+             !child.classList.contains('no-animate') &&
+             !child.hasAttribute('data-no-animate') &&
+             child.offsetParent !== null; // Only visible elements
+    });
+
+    // If section has grid items or cards, animate those instead
+    const gridItems = section.querySelectorAll('.work-project-item, .grid > *, [class*="grid"] > *');
+    if (gridItems.length > 0) {
+      children = Array.from(gridItems);
+    }
+
+    if (children.length === 0) return;
+
+    // Set initial state for all children
+    children.forEach((child) => {
+      // Only set if not already animated
+      if (!child.hasAttribute('data-reveal-animated')) {
+        gsap.set(child, {
+          opacity: 0,
+          y: 30
+        });
+        child.setAttribute('data-reveal-animated', 'true');
+      }
+    });
+
+    // Create ScrollTrigger for this section
+    gsap.to(children, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power2.out',
+      stagger: {
+        amount: 0.3,
+        from: 'start'
+      },
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 85%',
+        end: 'bottom 15%',
+        toggleActions: 'play none none none',
+        once: true, // Only animate once
+        markers: false // Set to true for debugging
+      }
+    });
+  });
+  
+  // Refresh ScrollTrigger after setup
+  ScrollTrigger.refresh();
+}
+
+// Initialize SectionOne page animations (similar to home hero section)
+async function initSectionOneAnimations() {
+  await new Promise(resolve => setTimeout(resolve, 100));
+  
+  // Navigation bar animation (first element to appear)
+  const mainNav = document.getElementById('main-nav');
+  if (mainNav) {
+    mainNav.style.willChange = 'opacity, transform';
+    gsap.fromTo(mainNav,
+      { opacity: 0, y: -20 },
+      { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.8, 
+        ease: 'power2.out', 
+        delay: 0.1,
+        onComplete: () => {
+          mainNav.style.willChange = 'auto';
+        }
+      }
+    );
+  }
+  
+  // Section title animation
+  const sectionTitle = document.querySelector('.section-one-title');
+  if (sectionTitle) {
+    sectionTitle.style.willChange = 'opacity, transform';
+    gsap.fromTo(sectionTitle,
+      { opacity: 0, y: 50 },
+      { 
+        opacity: 1, 
+        y: 0, 
+        duration: 1.2, 
+        ease: 'power3.out', 
+        delay: 0.3,
+        onComplete: () => {
+          sectionTitle.style.willChange = 'auto';
+        }
+      }
+    );
+  }
+  
+  // Down arrow animation
+  const sectionArrow = document.querySelector('.section-one-arrow');
+  if (sectionArrow) {
+    sectionArrow.style.willChange = 'opacity, transform';
+    gsap.fromTo(sectionArrow,
+      { opacity: 0, y: 20 },
+      { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.8, 
+        ease: 'power2.out', 
+        delay: 0.6,
+        onComplete: () => {
+          sectionArrow.style.willChange = 'auto';
+        }
+      }
+    );
+  }
+  
+  // Initialize beliefs rolodex animation (for About Us page)
+  initBeliefsRolodex();
+  
+  // Initialize scroll reveal animations for all sections
+  setTimeout(() => {
+    initScrollRevealAnimations();
+  }, 200);
+}
+
+// Initialize Beliefs Rolodex Animation
+function initBeliefsRolodex() {
+  const rolodexContainer = document.getElementById('beliefs-rolodex');
+  if (!rolodexContainer) return;
+
+  const beliefItems = rolodexContainer.querySelectorAll('.belief-item');
+  if (beliefItems.length === 0) return;
+
+  let currentIndex = 0;
+  let autoRotateInterval = null;
+
+  function showNextItem() {
+    // Remove active class from current item
+    beliefItems[currentIndex].classList.remove('active');
+    
+    // Move to next item
+    currentIndex = (currentIndex + 1) % beliefItems.length;
+    
+    // Add active class to next item
+    beliefItems[currentIndex].classList.add('active');
+  }
+
+  function startAutoRotate() {
+    if (autoRotateInterval) {
+      clearInterval(autoRotateInterval);
+    }
+    
+    // Rotate every 3 seconds
+    autoRotateInterval = setInterval(() => {
+      showNextItem();
+    }, 3000);
+  }
+
+  function stopAutoRotate() {
+    if (autoRotateInterval) {
+      clearInterval(autoRotateInterval);
+      autoRotateInterval = null;
+    }
+  }
+
+  // Pause on hover
+  rolodexContainer.addEventListener('mouseenter', stopAutoRotate);
+  rolodexContainer.addEventListener('mouseleave', startAutoRotate);
+
+  // Initialize: show first item and start rotation
+  if (beliefItems.length > 0) {
+    beliefItems[0].classList.add('active');
+    startAutoRotate();
+  }
+}
 
 // Mobile menu
 function initMobileMenu() {
@@ -1651,7 +2368,7 @@ function showError() {
         <div class="max-w-7xl mx-auto text-center">
           <h1 class="text-4xl font-bold mb-4 text-vici-black">Error loading application</h1>
           <p class="text-sm text-vici-black/60 mb-8">Please refresh the page.</p>
-          <button onclick="window.location.reload()" class="px-6 py-3 bg-vici-red hover:bg-vici-red/90 text-white transition-colors text-sm font-medium">
+          <button onclick="window.location.reload()" class="px-6 py-3 bg-vici-red hover:bg-vici-red/90 text-white transition-colors text-xs font-medium">
             Refresh Page
           </button>
         </div>

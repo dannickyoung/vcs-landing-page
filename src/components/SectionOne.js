@@ -17,6 +17,10 @@ export function createSectionOne(currentRoute = '', title = '') {
   };
 
   const pageTitle = getPageTitle();
+  
+  // Check if this is a project detail page (work/slug)
+  const isProjectPage = currentRoute.startsWith('work/') && currentRoute !== 'work';
+  
   // Split title into two lines - first line left, second line right
   const getTitleLines = (title) => {
     if (!title) return { line1: '', line2: '' };
@@ -75,7 +79,7 @@ export function createSectionOne(currentRoute = '', title = '') {
   const titleLines = getTitleLines(pageTitle);
   const titleHtml = pageTitle ? `
       <!-- Page/Project Title -->
-      <div class="absolute inset-0 z-10 flex flex-col justify-center px-5 md:px-8">
+      <div class="absolute inset-0 z-10 flex flex-col justify-center px-5 md:px-8 section-one-title opacity-0">
         <div class="w-full max-w-[90%] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[850px] xl:max-w-[1000px] mx-auto">
           ${titleLines.line1 ? `
             <h1 class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light leading-[0.9] tracking-tight text-vici-white text-left">
@@ -83,64 +87,72 @@ export function createSectionOne(currentRoute = '', title = '') {
             </h1>
           ` : ''}
           ${titleLines.line2 ? `
-            <h1 class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light leading-[0.9] tracking-tight text-vici-white text-right mt-2 md:mt-3">
-              ${titleLines.line2}
-          </h1>
+            <div class="text-right mt-2 md:mt-3">
+              <h1 class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light leading-[0.9] tracking-tight text-vici-white">
+                ${titleLines.line2}
+              </h1>
+              ${currentRoute === 'work' ? `
+                <p class="section-one-subtitle text-[10px] md:text-xs text-vici-white mt-2 md:mt-3" style="text-align: justify; text-align-last: right; max-width: 240px; margin-left: auto; word-spacing: 0.5em; letter-spacing: 0.05em; text-transform: uppercase;">
+                  [ Brand identity, digital experiences and content. ]
+                </p>
+              ` : currentRoute === 'services' ? `
+                <p class="section-one-subtitle text-[10px] md:text-xs text-vici-white mt-2 md:mt-3" style="text-align: justify; text-align-last: right; max-width: 240px; margin-left: auto; word-spacing: 0.5em; letter-spacing: 0.05em; text-transform: uppercase;">
+                  [ Brand strategy, digital design and creative content. ]
+                </p>
+              ` : currentRoute === 'team' ? `
+                <p class="section-one-subtitle text-[10px] md:text-xs text-vici-white mt-2 md:mt-3" style="text-align: justify; text-align-last: right; max-width: 240px; margin-left: auto; word-spacing: 0.5em; letter-spacing: 0.05em; text-transform: uppercase;">
+                  [ Creative minds driving innovative solutions. ]
+                </p>
+              ` : currentRoute === 'contact' ? `
+                <p class="section-one-subtitle text-[10px] md:text-xs text-vici-white mt-2 md:mt-3" style="text-align: justify; text-align-last: right; max-width: 240px; margin-left: auto; word-spacing: 0.5em; letter-spacing: 0.05em; text-transform: uppercase;">
+                  [ Let's bring your vision to life together. ]
+                </p>
+              ` : currentRoute === 'about' ? `
+                <p class="section-one-subtitle text-[10px] md:text-xs text-vici-white mt-2 md:mt-3" style="text-align: justify; text-align-last: right; max-width: 240px; margin-left: auto; word-spacing: 0.5em; letter-spacing: 0.05em; text-transform: uppercase;">
+                  [ Building brands that stand the test of time. ]
+                </p>
+              ` : ''}
+            </div>
           ` : ''}
         </div>
       </div>
   ` : '';
 
-  // Check if this page needs Unicorn Studio embed
+  // Check if this page needs ColorBends background
   const isWorkPage = currentRoute === 'work' || currentRoute.startsWith('work/');
   const isServicesPage = currentRoute === 'services';
   const isTeamPage = currentRoute === 'team';
   const isContactPage = currentRoute === 'contact';
   const isAboutPage = currentRoute === 'about';
   const isPrivacyPage = currentRoute === 'privacy';
-  const hasUnicornStudio = isWorkPage || isServicesPage || isTeamPage || isContactPage || isAboutPage;
+  const hasColorBends = isWorkPage || isServicesPage || isTeamPage || isContactPage || isAboutPage;
   
-  // Get project ID based on page
-  let projectId = '';
-  if (isWorkPage) {
-    projectId = 'zhXexu1MI0SPKztgMvk7';
-  } else if (isServicesPage) {
-    projectId = 'qn4S1BwsQmlLqLzudSQx';
-  } else if (isTeamPage) {
-    projectId = 'QZDPom0n1lRI4LwoRHVV';
-  } else if (isContactPage) {
-    projectId = 'f6xgIjnKSrj2Y8hxLDvj';
-  } else if (isAboutPage) {
-    projectId = 'iqAn0SO7cFo2O3Z5dZw0';
-  }
-  
-  // Unicorn Studio embed for pages that need it
-  const unicornStudioEmbed = hasUnicornStudio ? `
-      <!-- Unicorn Studio Background -->
+  // ColorBends Background container
+  const colorBendsEmbed = hasColorBends ? `
+      <!-- ColorBends Background -->
       <div 
+        id="color-bends-container-section-one"
         class="absolute inset-0 w-full h-full z-0"
-        data-us-project="${projectId}" 
-        data-us-production="true"
-        data-us-lazyload="true"
-        data-us-scale="0.75"
-        data-us-dpi="1.0"
-        data-us-fps="30"
-        style="width: 100%; height: 100%; min-height: 100vh;"
+        style="width: 100%; height: 100%; ${isProjectPage ? 'min-height: 66.67vh;' : 'min-height: 100vh;'} pointer-events: auto;"
       ></div>
   ` : '';
-
+  
   return `
     <!-- Section 1 - Navigation Bar (Viewport Height Responsive) -->
-    <section class="relative h-screen min-h-screen flex flex-col overflow-hidden bg-vici-black" id="section-one">
-      ${unicornStudioEmbed}
-      ${hasUnicornStudio ? '<!-- Bottom Gradient Overlay to Hide Branding --><div class="absolute bottom-0 left-0 right-0 h-48 md:h-56 lg:h-64 xl:h-72 z-10 pointer-events-none" style="background: linear-gradient(to top, #000000 0%, #000000 20%, rgba(0, 0, 0, 0.95) 40%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0) 100%);"></div>' : ''}
+    <section class="relative ${isProjectPage ? 'project-page' : ''} h-screen min-h-screen flex flex-col overflow-hidden bg-vici-black" id="section-one">
+      ${colorBendsEmbed}
       <!-- Navigation Bar -->
-      <nav class="relative z-50 w-full transition-all duration-300 pt-6 md:pt-8 lg:pt-10" id="main-nav">
+      <nav class="relative z-50 w-full transition-all duration-300 pt-6 md:pt-8 lg:pt-10 opacity-0" id="main-nav">
         <div class="px-5 md:px-8 py-2 flex items-start justify-between relative">
           <!-- Logo Left -->
-          <a href="/" data-route="home" class="flex items-center gap-2 transition-opacity hover:opacity-80">
-            <img src="/Logo-icon-red.png" alt="VICI Studio" class="h-6 md:h-7 lg:h-8 w-auto max-w-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-            <span class="text-sm font-semibold tracking-tight text-vici-white hidden">VICI</span>
+          <a href="/" data-route="home" class="flex items-center gap-1 sm:gap-1.5 transition-opacity hover:opacity-80">
+            <div class="text-vici-white text-xs sm:text-sm font-light tracking-wider">
+              <span class="font-bold">VICI STUDIO®</span>
+            </div>
+            <div class="text-vici-white text-xs sm:text-sm font-light">|</div>
+            <div class="text-vici-white text-xs sm:text-sm font-light tracking-wider">
+              Singapore
+            </div>
           </a>
           
           <!-- Navigation Links Right - Two Columns -->
@@ -216,7 +228,7 @@ export function createSectionOne(currentRoute = '', title = '') {
       </nav>
       ${titleHtml}
       <!-- Down Arrow -->
-      <div class="absolute bottom-6 md:bottom-8 right-5 md:right-8 z-20 pointer-events-none">
+      <div class="absolute bottom-6 md:bottom-8 right-5 md:right-8 z-20 pointer-events-none section-one-arrow opacity-0">
         <svg class="w-6 h-6 md:w-8 md:h-8 text-vici-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="height: 100%;">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 22l6-6m-6 6l-6-6m6 6V2"></path>
         </svg>

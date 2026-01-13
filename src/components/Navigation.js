@@ -4,9 +4,14 @@ export function createNavigation() {
     <nav class="relative z-50 transition-all duration-300" id="main-nav">
       <div class="px-5 md:px-8 py-2 flex items-center justify-between">
         <!-- Logo Left -->
-        <a href="/" data-route="home" class="flex items-center gap-2 transition-opacity hover:opacity-80">
-          <img src="/Logo-icon-red.png" alt="VICI Studio" class="h-5 w-auto max-w-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-          <span class="text-sm font-semibold tracking-tight text-vici-white hidden">VICI</span>
+        <a href="/" data-route="home" class="flex items-center gap-1 sm:gap-1.5 transition-opacity hover:opacity-80">
+          <div class="text-vici-white text-xs sm:text-sm font-light tracking-wider">
+            <span class="font-bold">VICI STUDIO®</span>
+          </div>
+          <div class="text-vici-white text-xs sm:text-sm font-light">|</div>
+          <div class="text-vici-white text-xs sm:text-sm font-light tracking-wider">
+            Singapore
+          </div>
         </a>
         
         <!-- Navigation Links Middle - Two Columns -->

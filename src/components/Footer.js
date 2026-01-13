@@ -1,14 +1,14 @@
 // Footer Component - Professional Design Studio Layout
 export function createFooter() {
   return `
-    <footer class="text-vici-white py-12 md:py-16 lg:py-20 px-5 md:px-8" id="footer-section" style="background-color: #1C1C1C;">
+    <footer class="text-vici-white py-12 md:py-16 lg:py-20 px-5 md:px-8 bg-vici-black" id="footer-section">
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row md:justify-between mb-8 md:mb-12 md:items-start">
           <!-- Left Section - Contact Message -->
           <div class="md:flex-shrink-0 w-full md:max-w-[450px]">
-            <!-- Brand Name -->
-            <div class="text-sm md:text-base text-vici-white/60 mb-4 md:mb-6 footer-item opacity-0">
-              VICI STUDIO®
+            <!-- Brand Logo -->
+            <div class="mb-4 md:mb-6 footer-item opacity-0">
+              <img src="/logo-icon-white.png" alt="VICI Studio" class="h-5 w-auto max-w-full" onerror="this.style.display='none';">
             </div>
             <!-- Contact Heading -->
             <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-[50px] font-medium mb-3 md:mb-4 text-vici-white footer-item opacity-0" style="line-height: 1.27;" id="footer-heading">
@@ -51,9 +51,9 @@ export function createFooter() {
 
             <!-- Section - Navigation Links -->
             <div>
-              <nav class="flex flex-col gap-2 md:gap-3 text-xs md:text-sm">
+              <nav class="flex flex-col gap-4 md:gap-5 text-[10px] md:text-xs">
                 <a href="/" data-route="home" class="text-vici-white/50 hover:text-vici-red transition-colors inline-flex items-center gap-1 footer-item opacity-0">
-                  HOME
+                  → HOME
                 </a>
                 <a href="/work" data-route="work" class="text-vici-white/50 hover:text-vici-red transition-colors footer-item opacity-0">
                   WORK

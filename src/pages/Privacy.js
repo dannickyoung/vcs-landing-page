@@ -4,9 +4,17 @@ export function renderPrivacy() {
     <!-- Privacy Policy Content Section -->
     <section class="bg-vici-black text-vici-white py-12 md:py-16 lg:py-20 px-5 md:px-8">
       <div class="max-w-4xl mx-auto">
+        <!-- PRIVACY Label -->
+        <div class="mb-6 md:mb-8 flex items-center gap-2">
+          <svg class="w-4 h-4 text-vici-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+          <p class="text-xs md:text-sm text-vici-red uppercase tracking-wider">PRIVACY</p>
+        </div>
+
         <!-- Page Header -->
         <div class="mb-8 md:mb-12 lg:mb-16">
-          <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light tracking-tight text-vici-white mb-2 md:mb-4">Privacy <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">Policy</span></h1>
+          <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-tight text-vici-white mb-6 md:mb-8">Privacy <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">Policy</span></h1>
           <p class="text-xs md:text-sm text-vici-white/60 uppercase tracking-wider mb-6 md:mb-8">LAST UPDATED: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
         </div>
 

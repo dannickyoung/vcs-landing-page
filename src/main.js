@@ -41,12 +41,12 @@ function initWelcomeScreen() {
   
   // Set initial positions (off-screen)
   gsap.set(welcomeBrand, {
-    x: -200,
+    x: -80,
     opacity: 0
   });
   
   gsap.set(welcomeLocation, {
-    x: 200,
+    x: 80,
     opacity: 0
   });
   
@@ -99,14 +99,14 @@ function exitWelcomeScreen() {
   setTimeout(() => {
     // Exit animation: move away from center
     gsap.to(welcomeBrand, {
-      x: -200,
+      x: -80,
       opacity: 0,
       duration: 0.8,
       ease: 'power2.in'
     });
     
     gsap.to(welcomeLocation, {
-      x: 200,
+      x: 80,
       opacity: 0,
       duration: 0.8,
       ease: 'power2.in'

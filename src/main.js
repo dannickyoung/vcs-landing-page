@@ -29,9 +29,10 @@ let welcomeScreenExited = false;
 function initWelcomeScreen() {
   const welcomeScreen = document.getElementById('welcome-screen');
   const welcomeBrand = document.getElementById('welcome-brand');
+  const welcomeSeparator = document.getElementById('welcome-separator');
   const welcomeLocation = document.getElementById('welcome-location');
   
-  if (!welcomeScreen || !welcomeBrand || !welcomeLocation) return;
+  if (!welcomeScreen || !welcomeBrand || !welcomeLocation || !welcomeSeparator) return;
   
   // Prevent body scroll during welcome screen
   document.body.style.overflow = 'hidden';
@@ -46,6 +47,10 @@ function initWelcomeScreen() {
   
   gsap.set(welcomeLocation, {
     x: 200,
+    opacity: 0
+  });
+  
+  gsap.set(welcomeSeparator, {
     opacity: 0
   });
   
@@ -65,6 +70,13 @@ function initWelcomeScreen() {
     ease: 'power2.out',
     delay: 0.2
   });
+  
+  gsap.to(welcomeSeparator, {
+    opacity: 1,
+    duration: 1,
+    ease: 'power2.out',
+    delay: 0.2
+  });
 }
 
 function exitWelcomeScreen() {
@@ -72,9 +84,10 @@ function exitWelcomeScreen() {
   
   const welcomeScreen = document.getElementById('welcome-screen');
   const welcomeBrand = document.getElementById('welcome-brand');
+  const welcomeSeparator = document.getElementById('welcome-separator');
   const welcomeLocation = document.getElementById('welcome-location');
   
-  if (!welcomeScreen || !welcomeBrand || !welcomeLocation) return;
+  if (!welcomeScreen || !welcomeBrand || !welcomeLocation || !welcomeSeparator) return;
   
   welcomeScreenExited = true;
   
@@ -94,6 +107,12 @@ function exitWelcomeScreen() {
     
     gsap.to(welcomeLocation, {
       x: 200,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power2.in'
+    });
+    
+    gsap.to(welcomeSeparator, {
       opacity: 0,
       duration: 0.8,
       ease: 'power2.in'

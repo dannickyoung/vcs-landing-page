@@ -48,16 +48,6 @@ export function renderProjectDetail(projectId) {
   // Project data - all projects from CMS
   const projects = {
     // Brand Design
-    'dtrax-brand': {
-      id: 'dtrax-brand',
-      title: "D'TRAX > BRANDING AND IDENTITY",
-      category: 'BRAND DESIGN',
-      description: 'Complete brand identity development for D\'TRAX, including logo design, visual systems, and brand guidelines. A comprehensive rebranding project that established a strong visual identity.',
-      year: '2024',
-      client: "D'TRAX",
-      services: ['Brand Identity', 'Logo Design', 'Visual System', 'Brand Guidelines'],
-      images: getProjectImages('brand', "D'TRAX")
-    },
     'first-advisory-brand': {
       id: 'first-advisory-brand',
       title: 'FIRST ADVISORY > BRAND DESIGN',
@@ -66,7 +56,8 @@ export function renderProjectDetail(projectId) {
       year: '2024',
       client: 'First Advisory',
       services: ['Brand Identity', 'Logo Design', 'Visual System', 'Brand Guidelines'],
-      images: getProjectImages('brand', 'First Advisory')
+      images: getProjectImages('brand', 'First Advisory'),
+      writeup: `We led the development of a brand system for First Advisory, designed to communicate clarity, confidence, and professional judgment within a highly regulated financial context.\n\nWe focused on building a composed and disciplined visual language that supports credibility at every point of interaction. Typography, colour, and layout were brought together into a structured design system prioritising legibility, consistency, and restraint across client-facing touchpoints.\n\nRather than drawing attention to itself, the brand is designed to do its job quietly. It reinforces trust, signals competence, and supports clear communication between First Advisory and its clients.\n\nThe system gives First Advisory a stable foundation for representing its work with clarity and confidence, aligned with the way the firm operates day to day.`
     },
     'gobrainly': {
       id: 'gobrainly',
@@ -76,7 +67,8 @@ export function renderProjectDetail(projectId) {
       year: '2024',
       client: 'GoBrainly',
       services: ['Brand Identity', 'Logo Design', 'Visual System', 'Brand Guidelines'],
-      images: getProjectImages('brand', 'GoBrainly')
+      images: getProjectImages('brand', 'GoBrainly'),
+      writeup: `Clarity and accessibility guided the brand identity we developed for GoBrainly, an education technology platform serving a broad and diverse audience.\n\nWe created a complete identity system designed to support learning-focused products across digital environments. Our work defined the core visual language, brand structure, and identity elements, ensuring the system could scale while remaining approachable and easy to understand.\n\nWe balanced precision with warmth throughout the identity. Visual decisions were made to communicate intelligence without intimidation, supporting GoBrainly\u2019s aim to make learning feel intuitive rather than complex.\n\nThe identity equips GoBrainly with a flexible and recognisable system that can grow with the platform, maintaining consistency and clarity as the product evolves.`
     },
     'lumiere-consulting-brand': {
       id: 'lumiere-consulting-brand',
@@ -86,7 +78,8 @@ export function renderProjectDetail(projectId) {
       year: '2024',
       client: 'Lumiere Consulting',
       services: ['Brand Identity', 'Logo Design', 'Visual System', 'Brand Strategy'],
-      images: getProjectImages('brand', 'Lumiere Consulting')
+      images: getProjectImages('brand', 'Lumiere Consulting'),
+      writeup: `At the highest levels of legal executive search, credibility is built through discretion, judgment, and trust.\n\nWe developed a brand system for Lumiere Consulting that reflects this reality. Our focus was on establishing a restrained visual language and identity structure that positions the firm as a considered and selective intermediary.\n\nWe shaped typography, colour, and layout to feel composed and deliberate, supporting consistent application across materials while reinforcing authority without excess. Every element was designed to stay out of the way, allowing expertise and relationships to remain central.\n\nThe brand supports Lumiere Consulting by aligning closely with how the firm works: precise, disciplined, and trusted within a senior professional context.`
     },
     // Product Design
     'dtrax-product': {
@@ -97,7 +90,8 @@ export function renderProjectDetail(projectId) {
       year: '2024',
       client: "D'TRAX",
       services: ['UI/UX Design', 'Website Development', 'User Research', 'Prototyping'],
-      images: getProjectImages('product', "D'TRAX")
+      images: getProjectImages('product', "D'TRAX"),
+      writeup: `D\u2019trax\u2019s work is highly visual, with projects that rely on detail, materiality, and spatial clarity to speak for themselves. The website needed to give that work space, without losing structure or control.\n\nThis refresh focused on rebalancing content and visuals. We refined hierarchy and navigation, so imagery leads where it should, while information remains easy to access and understand. The intention was not to simplify the work, but to frame it more deliberately.\n\nDesign and development were handled together to ensure visual impact was not compromised by performance or responsiveness. Layout and interaction decisions were shaped to feel measured across devices, allowing the work to remain the focus.\n\nFor D\u2019trax, the site now functions less as an explanation and more as a lens, giving visitors a clear sense of the practice through the work itself.`
     },
     'first-advisory-product': {
       id: 'first-advisory-product',
@@ -107,7 +101,8 @@ export function renderProjectDetail(projectId) {
       year: '2024',
       client: 'First Advisory',
       services: ['UI/UX Design', 'Website Development', 'User Research', 'Prototyping'],
-      images: getProjectImages('product', 'First Advisory')
+      images: getProjectImages('product', 'First Advisory'),
+      writeup: `In financial advisory, trust is built long before a conversation begins. The website plays a role in setting that tone.\n\nThis project involved building a digital presence from the ground up to reflect how First Advisory operates between parties. Content was shaped to prioritise accuracy and pacing, allowing services and areas of expertise to be understood without pressure or embellishment.\n\nWe paid close attention to how information unfolds. Structure and navigation were designed to guide readers steadily, recognising that confidence often comes from what is left unsaid as much as what is presented.\n\nThe site does not attempt to persuade. It establishes a baseline of clarity, allowing discussions to start on solid ground.`
     },
     'loong-colorectal': {
       id: 'loong-colorectal',
@@ -117,7 +112,8 @@ export function renderProjectDetail(projectId) {
       year: '2024',
       client: 'Loong Colorectal',
       services: ['Website Design', 'Healthcare UX', 'Content Strategy', 'Development'],
-      images: getProjectImages('product', 'Loong Colorectal')
+      images: getProjectImages('product', 'Loong Colorectal'),
+      writeup: `For patients, the first interaction with a clinic is often informational, but it can also be emotional.\n\nThis refresh focused on reshaping how information is encountered. We reorganised content to make essential details easier to find and less intimidating to navigate, particularly for visitors dealing with unfamiliar or sensitive concerns.\n\nDesign decisions were guided by calmness and readability. Layout, spacing, and responsiveness were considered together to reduce friction and maintain a reassuring tone across devices.\n\nThe experience now gives patients time and space to orient themselves, before they ever need to make a decision.`
     },
     'lumiere-consulting-product': {
       id: 'lumiere-consulting-product',
@@ -127,7 +123,8 @@ export function renderProjectDetail(projectId) {
       year: '2024',
       client: 'Lumiere Consulting',
       services: ['UI/UX Design', 'Website Development', 'User Research', 'Content Strategy'],
-      images: getProjectImages('product', 'Lumiere Consulting')
+      images: getProjectImages('product', 'Lumiere Consulting'),
+      writeup: `In executive search, credibility is not declared. It is inferred.\n\nThis website was built to reflect Lumiere Consulting\u2019s role as a selective intermediary operating at senior levels of the legal market. Information is presented with restraint, allowing judgment and experience to register without overt emphasis.\n\nWe focused on pacing and clarity rather than volume. Navigation and structure were shaped to guide visitors efficiently, while visual decisions remained composed and deliberate.\n\nNothing on the site asks for attention. That, in itself, is the signal.`
     },
     'ridm': {
       id: 'ridm',
@@ -137,7 +134,8 @@ export function renderProjectDetail(projectId) {
       year: '2024',
       client: 'RiDM',
       services: ['UI/UX Design', 'Website Development', 'User Research', 'Prototyping'],
-      images: getProjectImages('product', 'RiDM')
+      images: getProjectImages('product', 'RiDM'),
+      writeup: `RiDM\u2019s product carries complexity, but the website needed to lower the threshold for understanding it.\n\nThis project centred on shaping how the product is explained. We worked through content flow and interaction decisions that help users grasp the offering progressively, rather than all at once.\n\nDesign and development were treated as a single system, allowing layout, responsiveness, and performance to reinforce clarity across devices.\n\nThe site invites exploration without insisting on it, giving users room to understand the product in their own time.`
     },
     // Content Production
     'acw-group': {
@@ -155,10 +153,11 @@ export function renderProjectDetail(projectId) {
       title: 'BANKING CIRCLE > CONTENT PRODUCTION',
       category: 'CONTENT PRODUCTION',
       description: 'Corporate content production for Banking Circle. Professional photography and videography services for corporate communications.',
-      year: '2024',
+      year: '2025',
       client: 'Banking Circle',
       services: ['Corporate Content', 'Video Production', 'Photography', 'Content Strategy'],
-      images: getProjectImages('content', 'Banking Circle')
+      images: getProjectImages('content', 'Banking Circle'),
+      writeup: `Banking Circle\u2019s social content sits in a space where clarity and credibility matter more than volume.\n\nOur work focused on editing existing footage into short, considered formats suitable for social platforms. The emphasis was on pacing, clarity, and tone, ensuring messages remained sharp and professional without losing momentum.\n\nEach piece was shaped to support consistent communication across channels, allowing the content to feel purposeful rather than promotional.`
     },
     'dtrax-mitsui': {
       id: 'dtrax-mitsui',
@@ -168,7 +167,8 @@ export function renderProjectDetail(projectId) {
       year: '2024',
       client: "D'TRAX x Mitsui Chemicals",
       services: ['Event Coverage', 'Video Production', 'Photography', 'Content Strategy'],
-      images: getProjectImages('content', "D'TRAX x Mitsui Chemicals")
+      images: getProjectImages('content', "D'TRAX x Mitsui Chemicals"),
+      writeup: `This project documented the transformation of Mitsui Chemicals\u2019 office in Singapore, from pre-construction to completion, in partnership with D\u2019trax.\n\nWe filmed the space before and after the fit-out, focusing on spatial flow, materiality, and the contrast between stages. The intent was not just to show change, but to make the process legible through visual storytelling.\n\nThe film highlights the design outcome through progression, allowing the work to speak through what it became.`
     },
     'loong-colorectal-content': {
       id: 'loong-colorectal-content',
@@ -178,17 +178,19 @@ export function renderProjectDetail(projectId) {
       year: '2024',
       client: 'Loong Colorectal',
       services: ['Healthcare Content', 'Photography', 'Video Production', 'Content Strategy'],
-      images: getProjectImages('content', 'Loong Colorectal')
+      images: getProjectImages('content', 'Loong Colorectal'),
+      writeup: `For a medical practice, content needs to build trust before it builds familiarity.\n\nWe produced a set of branding and FAQ videos alongside professional-in-action photography, designed for use across the website and social platforms. The focus was on clarity, reassurance, and authenticity, allowing information to be communicated without feeling scripted or impersonal.\n\nVisual choices were kept calm and composed, ensuring the content supports patient understanding while reflecting the clinic\u2019s standard of care.`
     },
     'singapore-pools': {
       id: 'singapore-pools',
       title: 'SINGAPORE POOLS > CONTENT PRODUCTION',
       category: 'CONTENT PRODUCTION',
       description: 'Event coverage and content production for Singapore Pools. Capturing the excitement and energy of major events and campaigns.',
-      year: '2024',
+      year: '2025',
       client: 'Singapore Pools',
       services: ['Event Coverage', 'Video Production', 'Photography', 'Content Strategy'],
-      images: getProjectImages('content', 'Singapore Pools')
+      images: getProjectImages('content', 'Singapore Pools'),
+      writeup: `This internal workshop was about interaction, participation, and energy, not presentation.\n\nWe captured the event as it unfolded, focusing on candid moments, group dynamics, and the lighter interactions that shape a shared experience. The approach prioritised observation over direction, allowing the atmosphere of the session to come through naturally.\n\nThe content reflects the tone of the day, balancing professionalism with approachability.`
     },
     'drum-awards': {
       id: 'drum-awards',
@@ -198,7 +200,8 @@ export function renderProjectDetail(projectId) {
       year: '2023',
       client: 'The Drum Awards',
       services: ['Event Coverage', 'Video Production', 'Photography', 'Content Strategy'],
-      images: getProjectImages('content', 'The Drum Awards')
+      images: getProjectImages('content', 'The Drum Awards'),
+      writeup: `Awards nights move quickly, and the story is in the rhythm as much as the moments.\n\nWe filmed and edited a highlight piece that captures the pace, scale, and atmosphere of the event, focusing on transitions, reactions, and the collective energy of the room.\n\nThe film distils the evening into a tight narrative, designed to relive the experience rather than document it beat by beat.`
     },
     // AI Products
     'clard': {
@@ -206,10 +209,11 @@ export function renderProjectDetail(projectId) {
       title: 'CLARD > AI PRODUCT',
       category: 'AI PRODUCTS',
       description: 'AI-powered product design for Clard. Innovative digital solutions leveraging artificial intelligence to create cutting-edge user experiences.',
-      year: '2024',
+      year: '2025',
       client: 'Clard',
       services: ['AI Integration', 'Product Design', 'UI/UX Design', 'Development'],
-      images: getProjectImages('ai', 'Clard')
+      images: getProjectImages('ai', 'Clard'),
+      writeup: `We partnered with Clard to shape a digital product designed around usability, structure, and practical adoption.\n\nWe led product definition and experience design end to end, focusing on clear product architecture, well-defined user journeys, and interaction patterns that feel predictable and easy to navigate. We treated AI as infrastructure rather than a headline, using it to support decisions, automation, and insight where it adds value, while keeping the interface calm and intuitive.\n\nOur focus throughout was on adoption. The product is structured so users understand it quickly, move through it with confidence, and integrate it naturally into their existing workflows.`
     }
   };
 
@@ -220,11 +224,11 @@ export function renderProjectDetail(projectId) {
     // AI Products
     'clard',
     // Brand Design
-    'dtrax-brand', 'first-advisory-brand', 'gobrainly', 'lumiere-consulting-brand',
+    'first-advisory-brand', 'gobrainly', 'lumiere-consulting-brand',
     // Product Design
     'dtrax-product', 'first-advisory-product', 'loong-colorectal', 'lumiere-consulting-product', 'ridm',
     // Content Production
-    'acw-group', 'banking-circle', 'dtrax-mitsui', 'loong-colorectal-content', 'singapore-pools', 'drum-awards'
+    /* 'acw-group', */ 'banking-circle', 'dtrax-mitsui', 'loong-colorectal-content', 'singapore-pools', 'drum-awards'
   ];
 
   // Find current project index
@@ -267,15 +271,22 @@ export function renderProjectDetail(projectId) {
         <div class="space-y-6 md:space-y-8 mb-8 md:mb-12 lg:mb-16">
           ${project.images.map((image, index) => `
             <div class="project-detail-image">
-              <img 
-                src="${image}" 
-                alt="${project.title} - Image ${index + 1}" 
+              <img
+                src="${image}"
+                alt="${project.title} - Image ${index + 1}"
                 class="w-full h-auto object-contain max-w-full"
                 onerror="this.parentElement.style.display='none';"
               >
             </div>
           `).join('')}
         </div>
+
+        ${project.writeup ? `
+        <!-- Project Writeup -->
+        <div class="mb-8 md:mb-12 lg:mb-16 max-w-3xl">
+          ${project.writeup.split('\n\n').map(p => `<p class="text-base md:text-lg text-vici-white/80 leading-relaxed mb-4 md:mb-6">${p}</p>`).join('')}
+        </div>
+        ` : ''}
 
         <!-- Project Services -->
         <div class="pt-8 md:pt-12">

@@ -8,7 +8,7 @@ export function createFooter() {
           <div class="md:flex-shrink-0 w-full md:max-w-[450px]">
             <!-- Brand Logo -->
             <div class="mb-4 md:mb-6 footer-item opacity-0">
-              <img src="/logo-icon-white.png" alt="VICI Studio" class="h-5 w-auto max-w-full" onerror="this.style.display='none';">
+              <img src="/logo-icon-white.png" alt="VICI STUDIO" class="h-5 w-auto max-w-full" onerror="this.style.display='none';">
             </div>
             <!-- Contact Heading -->
             <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-[50px] font-medium mb-3 md:mb-4 text-vici-white footer-item opacity-0" style="line-height: 1.27;" id="footer-heading">
@@ -46,6 +46,7 @@ export function createFooter() {
                 <a href="https://www.facebook.com/thevicistudio/" target="_blank" rel="noopener noreferrer" class="hover:text-vici-red transition-colors">Fb</a>
                 <a href="https://www.instagram.com/thevicistudio/?hl=en" target="_blank" rel="noopener noreferrer" class="hover:text-vici-red transition-colors">Ig</a>
                 <a href="https://sg.linkedin.com/company/thevicistudio" target="_blank" rel="noopener noreferrer" class="hover:text-vici-red transition-colors">Li</a>
+                <a href="http://www.youtube.com/@thevicistudio" target="_blank" rel="noopener noreferrer" class="hover:text-vici-red transition-colors">Yt</a>
               </div>
             </div>
 
@@ -72,6 +73,9 @@ export function createFooter() {
                 </a>
                 <a href="/privacy" data-route="privacy" class="text-vici-white/50 hover:text-vici-red transition-colors footer-item opacity-0">
                   PRIVACY POLICY
+                </a>
+                <a href="/terms" data-route="terms" class="text-vici-white/50 hover:text-vici-red transition-colors footer-item opacity-0">
+                  TERMS OF USE
                 </a>
               </nav>
             </div>

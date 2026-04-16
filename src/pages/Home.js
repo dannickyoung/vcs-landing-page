@@ -157,7 +157,7 @@ export function renderHome(currentRoute = 'home') {
           <div class="portfolio-title-container">
             <div class="portfolio-title active" data-index="0">
               <p class="portfolio-label">RECENT WORK</p>
-              <h3 class="portfolio-heading">D'TRAX > BRANDING<br>& IDENTITY</h3>
+              <h3 class="portfolio-heading">GOBRAINLY ><br>BRAND IDENTITY</h3>
               <p class="portfolio-category">BRAND DESIGN</p>
             </div>
             <div class="portfolio-title" data-index="1">
@@ -167,7 +167,7 @@ export function renderHome(currentRoute = 'home') {
             </div>
             <div class="portfolio-title" data-index="2">
               <p class="portfolio-label">RECENT WORK</p>
-              <h3 class="portfolio-heading">LOONG COLORECTAL ><br>WEBSITE DESIGN</h3>
+              <h3 class="portfolio-heading">D'TRAX > WEBSITE<br>DESIGN & DEV</h3>
               <p class="portfolio-category">PRODUCT DESIGN</p>
             </div>
             <div class="portfolio-title" data-index="3">
@@ -252,13 +252,13 @@ export function renderHome(currentRoute = 'home') {
             <div class="portfolio-carousel" id="portfolio-scroll-container">
               <div class="portfolio-carousel-items">
                 <div class="portfolio-carousel-item" data-index="0">
-                  <img src="/featured_project_1.png" alt="D'TRAX">
+                  <img src="/featured_project_1.png" alt="GOBRAINLY">
                 </div>
                 <div class="portfolio-carousel-item" data-index="1">
                   <img src="/featured_project_2.png" alt="RiDM">
                 </div>
                 <div class="portfolio-carousel-item" data-index="2">
-                  <img src="/featured_project_3.png" alt="LOONG COLORECTAL">
+                  <img src="/featured_project_3.png" alt="D'TRAX">
                 </div>
                 <div class="portfolio-carousel-item" data-index="3">
                   <img src="/featured_project_4.png" alt="THE DRUM AWARDS">

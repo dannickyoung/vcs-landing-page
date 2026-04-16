@@ -27,11 +27,11 @@ export function renderTeam() {
               <h3 class="text-2xl md:text-3xl lg:text-4xl font-light text-vici-black mb-3">Vivian <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">Chan</span></h3>
               <div class="space-y-2">
                 <div class="flex items-center gap-2">
-                  <img src="/Logo-icon-red.png" alt="VICI Studio" class="h-2 w-auto flex-shrink-0" style="filter: brightness(0);">
+                  <img src="/Logo-icon-red.png" alt="VICI STUDIO" class="h-2 w-auto flex-shrink-0" style="filter: brightness(0);">
                   <p class="text-[10px] md:text-xs text-vici-black/80 uppercase">Founder</p>
                 </div>
                 <div class="flex items-center gap-2">
-                  <img src="/Logo-icon-red.png" alt="VICI Studio" class="h-2 w-auto flex-shrink-0" style="filter: brightness(0);">
+                  <img src="/Logo-icon-red.png" alt="VICI STUDIO" class="h-2 w-auto flex-shrink-0" style="filter: brightness(0);">
                   <p class="text-[10px] md:text-xs text-vici-black/80 uppercase">Business Development</p>
                 </div>
               </div>
@@ -50,11 +50,11 @@ export function renderTeam() {
               <h3 class="text-2xl md:text-3xl lg:text-4xl font-light text-vici-black mb-3">Dannick <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">Young</span></h3>
               <div class="space-y-2">
                 <div class="flex items-center gap-2">
-                  <img src="/Logo-icon-red.png" alt="VICI Studio" class="h-2 w-auto flex-shrink-0" style="filter: brightness(0);">
+                  <img src="/Logo-icon-red.png" alt="VICI STUDIO" class="h-2 w-auto flex-shrink-0" style="filter: brightness(0);">
                   <p class="text-[10px] md:text-xs text-vici-black/80 uppercase">Co-Founder</p>
                 </div>
                 <div class="flex items-center gap-2">
-                  <img src="/Logo-icon-red.png" alt="VICI Studio" class="h-2 w-auto flex-shrink-0" style="filter: brightness(0);">
+                  <img src="/Logo-icon-red.png" alt="VICI STUDIO" class="h-2 w-auto flex-shrink-0" style="filter: brightness(0);">
                   <p class="text-[10px] md:text-xs text-vici-black/80 uppercase">Product/ Creative Lead</p>
                 </div>
               </div>
@@ -77,11 +77,11 @@ export function renderTeam() {
                 <h3 class="text-2xl md:text-3xl lg:text-4xl font-light text-vici-black mb-3">Mathias <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">Choo</span></h3>
                 <div class="space-y-2">
                   <div class="flex items-center gap-2">
-                    <img src="/Logo-icon-red.png" alt="VICI Studio" class="h-2 w-auto flex-shrink-0" style="filter: brightness(0);">
+                    <img src="/Logo-icon-red.png" alt="VICI STUDIO" class="h-2 w-auto flex-shrink-0" style="filter: brightness(0);">
                     <p class="text-[10px] md:text-xs text-vici-black/80 uppercase">Partner</p>
                   </div>
                   <div class="flex items-center gap-2">
-                    <img src="/Logo-icon-red.png" alt="VICI Studio" class="h-2 w-auto flex-shrink-0" style="filter: brightness(0);">
+                    <img src="/Logo-icon-red.png" alt="VICI STUDIO" class="h-2 w-auto flex-shrink-0" style="filter: brightness(0);">
                     <p class="text-[10px] md:text-xs text-vici-black/80 uppercase">Production Lead/ Videography</p>
                   </div>
                 </div>
@@ -119,7 +119,7 @@ export function renderTeam() {
           <!-- Right Column -->
           <div>
             <p class="text-base md:text-lg text-vici-white/80 leading-relaxed">
-              We <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">design</span>, <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">position</span>, and <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">launch</span> <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">brand systems</span>, <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">digital products</span>, and <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">websites</span> that don't just look good. They <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">perform</span>. From <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">strategy</span> to <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">execution</span>, we help you speak to the people who matter, clearly and convincingly.
+              We <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">design</span>, <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">position</span>, and <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">launch</span> <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">brand systems</span>, <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">digital products</span>, and <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">websites</span> that do not just look good. They <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">perform</span>. From <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">strategy</span> to <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: bold;">execution</span>, we help you speak to the people who matter, clearly and convincingly.
             </p>
           </div>
         </div>

@@ -32,9 +32,9 @@ export function renderContact() {
             <div id="contact-form-container" class="w-full">
             <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-6 md:space-y-8">
               <input type="hidden" name="access_key" value="1b88aa4e-81db-4d6f-82a6-a2a07e5d8f77">
-              <input type="hidden" name="subject" value="New Contact Form Submission from VICI Studio Website">
+              <input type="hidden" name="subject" value="New Contact Form Submission from VICI STUDIO Website">
               <input type="hidden" name="to" value="business@thevicistudio.com">
-              <input type="hidden" name="from_name" value="VICI Studio Contact Form">
+              <input type="hidden" name="from_name" value="VICI STUDIO Contact Form">
               
               <div>
                 <label for="fullName" class="block text-xs md:text-sm mb-2 uppercase tracking-wider contact-form-label">FULL NAME *</label>
@@ -100,7 +100,7 @@ export function renderContact() {
             <div id="contact-info-container" class="w-full space-y-8 md:space-y-12 opacity-0 pointer-events-none absolute top-0 left-0 right-0">
             <!-- Logo -->
             <div class="mb-8 md:mb-12">
-              <img src="/Logo-icon-red.png" alt="VICI Studio" class="h-20 md:h-24 lg:h-32 w-auto contact-logo-black" style="filter: brightness(0);">
+              <img src="/Logo-icon-red.png" alt="VICI STUDIO" class="h-20 md:h-24 lg:h-32 w-auto contact-logo-black" style="filter: brightness(0);">
             </div>
 
             <!-- Description Text -->

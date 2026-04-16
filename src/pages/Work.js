@@ -27,7 +27,6 @@ export function renderWork() {
   // All projects organized by category
   const projects = {
     branding: [
-      { name: "D'TRAX", title: "D'TRAX > BRANDING AND IDENTITY", description: "Brand identity and visual system", slug: 'dtrax-brand' },
       { name: "First Advisory", title: "FIRST ADVISORY > BRAND DESIGN", description: "Brand identity development", slug: 'first-advisory-brand' },
       { name: "GoBrainly", title: "GOBRAINLY > BRAND IDENTITY", description: "Complete brand identity system", slug: 'gobrainly' },
       { name: "Lumiere Consulting", title: "LUMIERE CONSULTING > BRAND DESIGN", description: "Brand strategy and visual identity", slug: 'lumiere-consulting-brand' }
@@ -40,7 +39,7 @@ export function renderWork() {
       { name: "RiDM", title: "RiDM > WEBSITE DESIGN & DEVELOPMENT", description: "Digital product design and development", slug: 'ridm' }
     ],
     content: [
-      { name: "ACW Group", title: "ACW GROUP > CONTENT PRODUCTION", description: "Event coverage and content production", slug: 'acw-group' },
+      // { name: "ACW Group", title: "ACW GROUP > CONTENT PRODUCTION", description: "Event coverage and content production", slug: 'acw-group' },
       { name: "Banking Circle", title: "BANKING CIRCLE > CONTENT PRODUCTION", description: "Corporate content production", slug: 'banking-circle' },
       { name: "D'TRAX x Mitsui Chemicals", title: "D'TRAX X MITSUI CHEMICALS > CONTENT PRODUCTION", description: "Collaborative content production", slug: 'dtrax-mitsui' },
       { name: "Loong Colorectal", title: "LOONG COLORECTAL > CONTENT PRODUCTION", description: "Healthcare content production", slug: 'loong-colorectal-content' },

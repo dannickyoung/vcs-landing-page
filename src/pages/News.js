@@ -166,7 +166,7 @@ export function renderNews() {
               <h2 class="text-4xl md:text-5xl lg:text-6xl font-normal text-vici-black leading-tight">Recent work</h2>
             </div>
             <a href="/work" data-route="work" class="standard-button !border-vici-black !text-vici-black hover:!bg-vici-black hover:!text-white">
-              Discover all projects <span class="text-vici-red">→</span>
+              DISCOVER ALL PROJECTS <span class="text-vici-red">→</span>
             </a>
           </div>
 

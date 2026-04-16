@@ -62,6 +62,9 @@ class Router {
       this.currentRoute = path;
       window.history.pushState({}, '', path === '/' ? '/' : `/${path}`);
       this.handleRoute();
+    } else {
+      // Same route — scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
@@ -88,9 +91,19 @@ class Router {
         
         // Load new page
         await handler();
-        
+
+        // Ensure scroll is at top after content is rendered
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+
         // Trigger page transition in (which also scrolls to top)
         await this.transitionIn();
+
+        // Final scroll reset after transition completes
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
       }
     } catch (error) {
       console.error('Error handling route:', error);

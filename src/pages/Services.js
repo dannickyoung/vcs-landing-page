@@ -20,61 +20,56 @@ export function renderServices() {
           
           <!-- Discover all projects button -->
           <a href="/work" data-route="work" class="standard-button !border-vici-black !text-vici-black hover:!bg-vici-black hover:!text-white">
-            Discover all projects <span class="text-vici-red">→</span>
+            DISCOVER ALL PROJECTS <span class="text-vici-red">→</span>
           </a>
         </div>
 
         <!-- Three Column Services Layout -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-0 pt-8 md:pt-12 border-t border-vici-black">
           <!-- Column 1: Branding -->
-          <div class="relative pl-0 pr-4 md:pr-8">
-            <div class="pl-0 md:pl-8">
+          <div class="relative pl-0 pr-4 md:pr-8 flex flex-col">
+            <div class="pl-0 md:pl-8 flex flex-col h-full">
               <div class="text-7xl md:text-8xl lg:text-9xl font-bold text-vici-red mb-4 md:mb-6 leading-none">I</div>
               <h3 class="text-base md:text-lg font-normal text-vici-black mb-6 md:mb-8">Branding</h3>
-              <ul class="space-y-2 md:space-y-3 text-2xl md:text-3xl lg:text-4xl font-light text-vici-black leading-tight">
-                <li>Art direction</li>
-                <li>Brand architecture</li>
-                <li>Brand behavior and internal alignment</li>
-                <li>Brand consultation</li>
-                <li>Brand guidelines</li>
-                <li>Brand positioning</li>
-                <li>Design systems</li>
-                <li>Messaging and tone of voice</li>
-                <li>Motion design systems</li>
-              </ul>
+              <div class="mt-auto space-y-2 md:space-y-3 text-sm md:text-base lg:text-lg font-light text-vici-black leading-relaxed">
+                <p>Art direction and visual systems</p>
+                <p>Brand architecture and positioning</p>
+                <p>Brand behaviour and internal alignment</p>
+                <p>Brand guidelines</p>
+                <p>Design and motion systems</p>
+                <p>Messaging and tone of voice</p>
+              </div>
             </div>
           </div>
 
           <!-- Column 2: Digital -->
-          <div class="relative border-l border-vici-black pl-4 md:pl-8 pr-4 md:pr-8">
-            <div>
+          <div class="relative border-l border-vici-black pl-4 md:pl-8 pr-4 md:pr-8 flex flex-col">
+            <div class="flex flex-col h-full">
               <div class="text-7xl md:text-8xl lg:text-9xl font-bold text-vici-red mb-4 md:mb-6 leading-none">II</div>
               <h3 class="text-base md:text-lg font-normal text-vici-black mb-6 md:mb-8">Digital</h3>
-              <ul class="space-y-2 md:space-y-3 text-2xl md:text-3xl lg:text-4xl font-light text-vici-black leading-tight">
-                <li>AI application development</li>
-                <li>AI-powered automation systems</li>
-                <li>Custom AI tool development</li>
-                <li>E-commerce platform design</li>
-                <li>Mobile application design and development</li>
-                <li>UI/UX design for digital products</li>
-                <li>User research and usability testing</li>
-                <li>Website design and development</li>
-              </ul>
+              <div class="mt-auto space-y-2 md:space-y-3 text-sm md:text-base lg:text-lg font-light text-vici-black leading-relaxed">
+                <p>AI product design and development</p>
+                <p>AI-powered automation systems</p>
+                <p>Mobile application design and development</p>
+                <p>UI/UX design for digital products</p>
+                <p>User research and usability testing</p>
+                <p>Website and e-commerce design</p>
+              </div>
             </div>
           </div>
 
           <!-- Column 3: Content -->
-          <div class="relative border-l border-vici-black pl-4 md:pl-8 pr-0">
-            <div>
+          <div class="relative border-l border-vici-black pl-4 md:pl-8 pr-0 flex flex-col">
+            <div class="flex flex-col h-full">
               <div class="text-7xl md:text-8xl lg:text-9xl font-bold text-vici-red mb-4 md:mb-6 leading-none">III</div>
               <h3 class="text-base md:text-lg font-normal text-vici-black mb-6 md:mb-8">Content</h3>
-              <ul class="space-y-2 md:space-y-3 text-2xl md:text-3xl lg:text-4xl font-light text-vici-black leading-tight">
-                <li>Campaign and marketing asset creation</li>
-                <li>Content strategy</li>
-                <li>Photography and visual content production</li>
-                <li>Social media content creation</li>
-                <li>Video production and onsite event filming</li>
-              </ul>
+              <div class="mt-auto space-y-2 md:space-y-3 text-sm md:text-base lg:text-lg font-light text-vici-black leading-relaxed">
+                <p>Campaign and narrative development</p>
+                <p>Content strategy and planning</p>
+                <p>Photography and visual production</p>
+                <p>Social and digital content systems</p>
+                <p>Video production and live event coverage</p>
+              </div>
             </div>
           </div>
         </div>
@@ -105,13 +100,13 @@ export function renderServices() {
           <div class="flex justify-end">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-center w-full md:w-auto md:max-w-4xl">
               <div class="flex items-center justify-center h-16 md:h-20 w-full">
-                <img src="/Clients/ACW.png" alt="ACW" class="h-10 md:h-12 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
+                <img src="/Clients/ACW.png" alt="ACW" class="h-12 md:h-14 max-w-36 md:max-w-44 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity">
               </div>
               <div class="flex items-center justify-center h-16 md:h-20 w-full">
-                <img src="/Clients/Banking_Circle.svg" alt="Banking Circle" class="h-10 md:h-12 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
+                <img src="/Clients/banking_circle.png" alt="Banking Circle" class="h-8 md:h-10 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
               </div>
               <div class="flex items-center justify-center h-16 md:h-20 w-full">
-                <img src="/Clients/Clard.svg" alt="Clard" class="h-10 md:h-12 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
+                <img src="/Clients/Clard.svg" alt="Clard" class="h-8 md:h-10 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
               </div>
             </div>
           </div>
@@ -124,13 +119,13 @@ export function renderServices() {
           <div class="flex justify-end">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-center w-full md:w-auto md:max-w-4xl">
               <div class="flex items-center justify-center h-16 md:h-20 w-full">
-                <img src="/Clients/DTRAX.svg" alt="DTRAX" class="h-10 md:h-12 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
+                <img src="/Clients/DTRAX.svg" alt="DTRAX" class="h-8 md:h-10 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
               </div>
               <div class="flex items-center justify-center h-16 md:h-20 w-full">
-                <img src="/Clients/Frist_Advisory.svg" alt="First Advisory" class="h-10 md:h-12 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
+                <img src="/Clients/Frist_Advisory.svg" alt="First Advisory" class="h-12 md:h-14 max-w-36 md:max-w-44 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
               </div>
               <div class="flex items-center justify-center h-16 md:h-20 w-full">
-                <img src="/Clients/GoBrainly.svg" alt="GoBrainly" class="h-10 md:h-12 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
+                <img src="/Clients/GoBrainly.svg" alt="GoBrainly" class="h-8 md:h-10 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
               </div>
             </div>
           </div>
@@ -143,13 +138,13 @@ export function renderServices() {
           <div class="flex justify-end">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-center w-full md:w-auto md:max-w-4xl">
               <div class="flex items-center justify-center h-16 md:h-20 w-full">
-                <img src="/Clients/Loong_Colorectal.svg" alt="Loong Colorectal" class="h-10 md:h-12 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
+                <img src="/Clients/Loong_Colorectal.svg" alt="Loong Colorectal" class="h-8 md:h-10 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
               </div>
               <div class="flex items-center justify-center h-16 md:h-20 w-full">
-                <img src="/Clients/Lumiere_Consulting.svg" alt="Lumiere Consulting" class="h-10 md:h-12 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
+                <img src="/Clients/Lumiere_Consulting.svg" alt="Lumiere Consulting" class="h-8 md:h-10 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
               </div>
               <div class="flex items-center justify-center h-16 md:h-20 w-full">
-                <img src="/Clients/Mitsui_Chemicals.svg" alt="Mitsui Chemicals" class="h-10 md:h-12 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
+                <img src="/Clients/aeon_surgery.png" alt="Aeon Surgery" class="h-8 md:h-10 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity">
               </div>
             </div>
           </div>
@@ -162,13 +157,13 @@ export function renderServices() {
           <div class="flex justify-end">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-center w-full md:w-auto md:max-w-4xl">
               <div class="flex items-center justify-center h-16 md:h-20 w-full">
-                <img src="/Clients/RIDM.svg" alt="RIDM" class="h-10 md:h-12 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
+                <img src="/Clients/RIDM.svg" alt="RIDM" class="h-8 md:h-10 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
               </div>
               <div class="flex items-center justify-center h-16 md:h-20 w-full">
-                <img src="/Clients/Singapore Pools.svg" alt="Singapore Pools" class="h-10 md:h-12 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
+                <img src="/Clients/Singapore Pools.svg" alt="Singapore Pools" class="h-12 md:h-14 max-w-36 md:max-w-44 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
               </div>
               <div class="flex items-center justify-center h-16 md:h-20 w-full">
-                <img src="/Clients/The_Drum.svg" alt="The Drum" class="h-10 md:h-12 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
+                <img src="/Clients/The_Drum.svg" alt="The Drum" class="h-8 md:h-10 max-w-32 md:max-w-40 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);">
               </div>
             </div>
           </div>

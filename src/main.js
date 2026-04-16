@@ -13,6 +13,7 @@ import { renderTeam } from './pages/Team.js';
 import { renderContact } from './pages/Contact.js';
 import { renderNews } from './pages/News.js'; // About Us page
 import { renderPrivacy } from './pages/Privacy.js';
+import { renderTerms } from './pages/Terms.js';
 import { mountColorBends, getColorBendsConfigForPage } from './components/ColorBendsWrapper.jsx';
 import { createGradualBlur, createGradualBlurSectionHTML } from './components/GradualBlurHelper.js';
 import { mountGradualBlur, mountPageScrollBlur, unmountPageScrollBlur } from './components/GradualBlurWrapper.jsx';
@@ -298,7 +299,6 @@ async function initApp() {
   function getProjectTitle(projectId) {
     const projects = {
       // Brand Design
-      'dtrax-brand': "D'TRAX > BRANDING AND IDENTITY",
       'first-advisory-brand': 'FIRST ADVISORY > BRAND DESIGN',
       'gobrainly': 'GOBRAINLY > BRAND IDENTITY',
       'lumiere-consulting-brand': 'LUMIERE CONSULTING > BRAND DESIGN',
@@ -309,7 +309,7 @@ async function initApp() {
       'lumiere-consulting-product': 'LUMIERE CONSULTING > WEBSITE DESIGN & DEVELOPMENT',
       'ridm': 'RiDM > WEBSITE DESIGN & DEVELOPMENT',
       // Content Production
-      'acw-group': 'ACW GROUP > CONTENT PRODUCTION',
+      // 'acw-group': 'ACW GROUP > CONTENT PRODUCTION',
       'banking-circle': 'BANKING CIRCLE > CONTENT PRODUCTION',
       'dtrax-mitsui': "D'TRAX X MITSUI CHEMICALS > CONTENT PRODUCTION",
       'loong-colorectal-content': 'LOONG COLORECTAL > CONTENT PRODUCTION',
@@ -354,9 +354,9 @@ async function initApp() {
 
   // All project slugs
   const projectSlugs = [
-    'dtrax-brand', 'first-advisory-brand', 'gobrainly', 'lumiere-consulting-brand',
+    'first-advisory-brand', 'gobrainly', 'lumiere-consulting-brand',
     'dtrax-product', 'first-advisory-product', 'loong-colorectal', 'lumiere-consulting-product', 'ridm',
-    'acw-group', 'banking-circle', 'dtrax-mitsui', 'loong-colorectal-content', 'singapore-pools', 'drum-awards',
+    /* 'acw-group', */ 'banking-circle', 'dtrax-mitsui', 'loong-colorectal-content', 'singapore-pools', 'drum-awards',
     'clard'
   ];
 
@@ -495,6 +495,23 @@ async function initApp() {
     if (appContent) {
       const currentRoute = getCurrentRoute();
       appContent.innerHTML = renderPrivacy();
+      updateNavigationArrows(currentRoute);
+      updateFooterLinks(currentRoute);
+      initNavigation();
+      initMobileMenu();
+      // Ensure footer is loaded
+      ensureFooter();
+      // Initialize scroll reveal animations
+      setTimeout(() => {
+        initScrollRevealAnimations();
+      }, 200);
+    }
+  });
+
+  router.addRoute('terms', async () => {
+    if (appContent) {
+      const currentRoute = getCurrentRoute();
+      appContent.innerHTML = renderTerms();
       updateNavigationArrows(currentRoute);
       updateFooterLinks(currentRoute);
       initNavigation();

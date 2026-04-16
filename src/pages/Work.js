@@ -15,39 +15,30 @@ export function renderWork() {
     return `/CMS/${encodedCategory}/${encodedProject}/THUMBNAIL.png`;
   };
 
-  // Helper function to create project slug
-  const createSlug = (name, category) => {
-    const baseSlug = name.toLowerCase()
-      .replace(/'/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
-    return `${baseSlug}-${category}`;
-  };
-
   // All projects organized by category
   const projects = {
     branding: [
-      { name: "First Advisory", title: "FIRST ADVISORY > BRAND DESIGN", description: "Brand identity development", slug: 'first-advisory-brand' },
-      { name: "GoBrainly", title: "GOBRAINLY > BRAND IDENTITY", description: "Complete brand identity system", slug: 'gobrainly' },
-      { name: "Lumiere Consulting", title: "LUMIERE CONSULTING > BRAND DESIGN", description: "Brand strategy and visual identity", slug: 'lumiere-consulting-brand' }
+      { name: "First Advisory", title: "FIRST ADVISORY", description: "Brand identity development", slug: 'first-advisory-brand' },
+      { name: "GoBrainly", title: "GOBRAINLY", description: "Complete brand identity system", slug: 'gobrainly' },
+      { name: "Lumiere Consulting", title: "LUMIERE CONSULTING", description: "Brand strategy and visual identity", slug: 'lumiere-consulting-brand' }
     ],
     product: [
-      { name: "D'TRAX", title: "D'TRAX > WEBSITE DESIGN & DEVELOPMENT", description: "Digital product design and development", slug: 'dtrax-product' },
-      { name: "First Advisory", title: "FIRST ADVISORY > WEBSITE DESIGN & DEVELOPMENT", description: "Digital platform design", slug: 'first-advisory-product' },
-      { name: "Loong Colorectal", title: "LOONG COLORECTAL > WEBSITE DESIGN & DEVELOPMENT", description: "Healthcare website design", slug: 'loong-colorectal' },
-      { name: "Lumiere Consulting", title: "LUMIERE CONSULTING > WEBSITE DESIGN & DEVELOPMENT", description: "Consulting firm website design", slug: 'lumiere-consulting-product' },
-      { name: "RiDM", title: "RiDM > WEBSITE DESIGN & DEVELOPMENT", description: "Digital product design and development", slug: 'ridm' }
+      { name: "D'TRAX", title: "D'TRAX", description: "Digital product design and development", slug: 'dtrax-product' },
+      { name: "First Advisory", title: "FIRST ADVISORY", description: "Digital platform design", slug: 'first-advisory-product' },
+      { name: "Loong Colorectal", title: "LOONG COLORECTAL", description: "Healthcare website design", slug: 'loong-colorectal' },
+      { name: "Lumiere Consulting", title: "LUMIERE CONSULTING", description: "Consulting firm website design", slug: 'lumiere-consulting-product' },
+      { name: "RiDM", title: "RiDM", description: "Digital product design and development", slug: 'ridm' }
     ],
     content: [
-      // { name: "ACW Group", title: "ACW GROUP > CONTENT PRODUCTION", description: "Event coverage and content production", slug: 'acw-group' },
-      { name: "Banking Circle", title: "BANKING CIRCLE > CONTENT PRODUCTION", description: "Corporate content production", slug: 'banking-circle' },
-      { name: "D'TRAX x Mitsui Chemicals", title: "D'TRAX X MITSUI CHEMICALS > CONTENT PRODUCTION", description: "Collaborative content production", slug: 'dtrax-mitsui' },
-      { name: "Loong Colorectal", title: "LOONG COLORECTAL > CONTENT PRODUCTION", description: "Healthcare content production", slug: 'loong-colorectal-content' },
-      { name: "Singapore Pools", title: "SINGAPORE POOLS > CONTENT PRODUCTION", description: "Event coverage and content", slug: 'singapore-pools' },
-      { name: "The Drum Awards", title: "THE DRUM AWARDS > AWARD NIGHT HIGHLIGHTS", description: "Event coverage and content production", slug: 'drum-awards' }
+      // { name: "ACW Group", title: "ACW GROUP", description: "Event coverage and content production", slug: 'acw-group' },
+      { name: "Banking Circle", title: "BANKING CIRCLE", description: "Corporate content production", slug: 'banking-circle' },
+      { name: "D'TRAX x Mitsui Chemicals", title: "D'TRAX X MITSUI CHEMICALS", description: "Collaborative content production", slug: 'dtrax-mitsui' },
+      { name: "Loong Colorectal", title: "LOONG COLORECTAL", description: "Healthcare content production", slug: 'loong-colorectal-content' },
+      { name: "Singapore Pools", title: "SINGAPORE POOLS", description: "Event coverage and content", slug: 'singapore-pools' },
+      { name: "The Drum Awards", title: "THE DRUM AWARDS", description: "Event coverage and content production", slug: 'drum-awards' }
     ],
     ai: [
-      { name: "Clard", title: "CLARD > AI PRODUCT", description: "AI-powered product design", slug: 'clard' }
+      { name: "Clard", title: "CLARD", description: "AI-powered product design", slug: 'clard' }
     ]
   };
 

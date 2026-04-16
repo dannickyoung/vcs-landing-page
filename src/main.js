@@ -211,7 +211,8 @@ async function initApp() {
             
             // Update on window resize to handle all breakpoints
             window.addEventListener('resize', updateColorBendsHeight);
-            
+            registerRouteCleanup(() => window.removeEventListener('resize', updateColorBendsHeight));
+
             mountColorBends('color-bends-container');
           } catch (error) {
             console.error('Failed to mount ColorBends:', error);
@@ -299,24 +300,24 @@ async function initApp() {
   function getProjectTitle(projectId) {
     const projects = {
       // Brand Design
-      'first-advisory-brand': 'FIRST ADVISORY > BRAND DESIGN',
-      'gobrainly': 'GOBRAINLY > BRAND IDENTITY',
-      'lumiere-consulting-brand': 'LUMIERE CONSULTING > BRAND DESIGN',
+      'first-advisory-brand': 'FIRST ADVISORY',
+      'gobrainly': 'GOBRAINLY',
+      'lumiere-consulting-brand': 'LUMIERE CONSULTING',
       // Product Design
-      'dtrax-product': "D'TRAX > WEBSITE DESIGN & DEVELOPMENT",
-      'first-advisory-product': 'FIRST ADVISORY > WEBSITE DESIGN & DEVELOPMENT',
-      'loong-colorectal': 'LOONG COLORECTAL > WEBSITE DESIGN & DEVELOPMENT',
-      'lumiere-consulting-product': 'LUMIERE CONSULTING > WEBSITE DESIGN & DEVELOPMENT',
-      'ridm': 'RiDM > WEBSITE DESIGN & DEVELOPMENT',
+      'dtrax-product': "D'TRAX",
+      'first-advisory-product': 'FIRST ADVISORY',
+      'loong-colorectal': 'LOONG COLORECTAL',
+      'lumiere-consulting-product': 'LUMIERE CONSULTING',
+      'ridm': 'RiDM',
       // Content Production
-      // 'acw-group': 'ACW GROUP > CONTENT PRODUCTION',
-      'banking-circle': 'BANKING CIRCLE > CONTENT PRODUCTION',
-      'dtrax-mitsui': "D'TRAX X MITSUI CHEMICALS > CONTENT PRODUCTION",
-      'loong-colorectal-content': 'LOONG COLORECTAL > CONTENT PRODUCTION',
-      'singapore-pools': 'SINGAPORE POOLS > CONTENT PRODUCTION',
-      'drum-awards': 'THE DRUM AWARDS > AWARD NIGHT HIGHLIGHTS',
+      // 'acw-group': 'ACW GROUP',
+      'banking-circle': 'BANKING CIRCLE',
+      'dtrax-mitsui': "D'TRAX X MITSUI CHEMICALS",
+      'loong-colorectal-content': 'LOONG COLORECTAL',
+      'singapore-pools': 'SINGAPORE POOLS',
+      'drum-awards': 'THE DRUM AWARDS',
       // AI Products
-      'clard': 'CLARD > AI PRODUCT'
+      'clard': 'CLARD'
     };
     return projects[projectId] || '';
   }
@@ -820,12 +821,19 @@ async function initApp() {
     
     // Listen to scroll events
     window.addEventListener('scroll', onScroll, { passive: true });
-    
+
     // Also update on resize
-    window.addEventListener('resize', () => {
+    const onResize = () => {
       stickyStartScroll = null; // Reset on resize
       setTimeout(updateColorTransition, 100);
-    }, { passive: true });
+    };
+    window.addEventListener('resize', onResize, { passive: true });
+
+    // Clean up listeners on route change
+    registerRouteCleanup(() => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+    });
   }
 
   // Initialize Contact form with Web3Forms
@@ -1003,14 +1011,13 @@ async function initApp() {
 
 // Ensure footer navigation links scroll to top
 function initFooterNavigation() {
-  // Add click handlers to footer navigation links to ensure scroll to top
   const footerLinks = document.querySelectorAll('footer a[data-route]');
   footerLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      // Scroll to top immediately when footer link is clicked
+    // Prevent duplicate listeners
+    if (link.dataset.footerNavInit) return;
+    link.dataset.footerNavInit = 'true';
+    link.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'auto' });
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
     });
   });
 }
@@ -1053,7 +1060,7 @@ function initScrollToTop() {
     });
     
     // Show/hide button based on scroll position
-    window.addEventListener('scroll', () => {
+    const onScrollForTop = () => {
       if (window.pageYOffset > 300) {
         scrollToTopBtn.style.opacity = '1';
         scrollToTopBtn.style.pointerEvents = 'auto';
@@ -1061,7 +1068,9 @@ function initScrollToTop() {
         scrollToTopBtn.style.opacity = '0.5';
         scrollToTopBtn.style.pointerEvents = 'none';
       }
-    });
+    };
+    window.addEventListener('scroll', onScrollForTop);
+    registerRouteCleanup(() => window.removeEventListener('scroll', onScrollForTop));
     
     // Initial state
     scrollToTopBtn.style.opacity = '0.5';
@@ -1077,7 +1086,6 @@ function initPortfolioScroll() {
   const imageItems = document.querySelectorAll('.portfolio-carousel-item');
   
   if (!scrollContainer || !imageItems.length) {
-    console.warn('Portfolio carousel elements not found');
     return;
   }
 
@@ -1229,11 +1237,19 @@ function initPortfolioScroll() {
   
   // Update on resize
   let resizeTimeout;
-  window.addEventListener('resize', () => {
+  const onPortfolioResize = () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       updatePortfolioTracking();
     }, 200);
+  };
+  window.addEventListener('resize', onPortfolioResize);
+
+  // Clean up on route change
+  registerRouteCleanup(() => {
+    stopAutoScroll();
+    window.removeEventListener('resize', onPortfolioResize);
+    clearTimeout(resizeTimeout);
   });
 }
 
@@ -1608,6 +1624,18 @@ async function initSectionOneAnimations() {
   }, 300);
 }
 
+// Global cleanup registry for route-scoped listeners/intervals
+let routeCleanups = [];
+
+function registerRouteCleanup(fn) {
+  routeCleanups.push(fn);
+}
+
+function runRouteCleanups() {
+  routeCleanups.forEach(fn => { try { fn(); } catch(e) {} });
+  routeCleanups = [];
+}
+
 // Global references for rolodex cleanup
 let rolodexCleanup = {
   interval: null,
@@ -1635,6 +1663,7 @@ function cleanupBeliefsRolodex() {
 // Global cleanup function for page animations (called on route transitions)
 window.cleanupPageAnimations = function() {
   cleanupBeliefsRolodex();
+  runRouteCleanups();
 };
 
 // Make unmountPageScrollBlur globally available for router cleanup
@@ -1790,7 +1819,8 @@ function initNavigation() {
   
   // Update times immediately and then every minute
   updateTimes();
-  setInterval(updateTimes, 60000);
+  const timeInterval = setInterval(updateTimes, 60000);
+  registerRouteCleanup(() => clearInterval(timeInterval));
 }
 
 
@@ -2065,7 +2095,7 @@ function initUnicornStudio() {
   
   // If embed element doesn't exist, reset initialization state (page was navigated away)
   if (!embedElement) {
-    console.log('Unicorn Studio embed element not found, resetting initialization state');
+    // Embed element not found, reset initialization state
     if (window.UnicornStudio) {
       window.UnicornStudio.isInitialized = false;
     }
@@ -2074,7 +2104,7 @@ function initUnicornStudio() {
 
   // If already initialized and element exists, force refresh to get updated project
   if (window.UnicornStudio && window.UnicornStudio.isInitialized && embedElement) {
-    console.log('Unicorn Studio already initialized, forcing refresh for updated project...');
+    // Already initialized, force refresh for updated project
     // Clear any cached data and force re-initialization
     if (typeof UnicornStudio !== 'undefined' && typeof UnicornStudio.init === 'function') {
       try {
@@ -2143,10 +2173,10 @@ function initUnicornStudio() {
     const section = embedElementCheck.closest('#hero-section');
     if (section && 'IntersectionObserver' in window) {
       observer.observe(section);
-      console.log('Observing hero section for Unicorn Studio embed');
+      // Observing hero section for lazy loading
     } else {
       // Fallback: load immediately if IntersectionObserver not supported
-      console.log('IntersectionObserver not supported, loading Unicorn Studio immediately');
+      // Fallback: load immediately
       loadUnicornStudio();
     }
   }, 100);
@@ -2195,18 +2225,12 @@ function initUnicornStudio() {
               UnicornStudio.init();
               window.UnicornStudio.isInitialized = true;
               
-              // Hide branding immediately and repeatedly
+              // Hide branding immediately and periodically
               hideUnicornStudioBranding();
-              setTimeout(() => hideUnicornStudioBranding(), 100);
-              setTimeout(() => hideUnicornStudioBranding(), 500);
-              setTimeout(() => hideUnicornStudioBranding(), 1000);
-              setTimeout(() => hideUnicornStudioBranding(), 2000);
-              
-              // Keep checking periodically (store interval ID for cleanup)
               if (window.brandingInterval) {
                 clearInterval(window.brandingInterval);
               }
-              window.brandingInterval = setInterval(() => hideUnicornStudioBranding(), 2000);
+              window.brandingInterval = setInterval(() => hideUnicornStudioBranding(), 1000);
             }
           } catch (error) {
             console.error('Error calling UnicornStudio.init():', error);
@@ -2366,8 +2390,7 @@ function initUnicornStudioSectionOne(projectId) {
       // Library already loaded, just initialize this embed
       try {
         UnicornStudio.init();
-        console.log(`Unicorn Studio initialized successfully for project ${projectId}`);
-        
+
         // Hide branding
         hideUnicornStudioBranding();
         // Store interval ID for cleanup (reuse existing if present)
@@ -2395,11 +2418,14 @@ function initUnicornStudioSectionOne(projectId) {
           clearInterval(checkInit);
           try {
             UnicornStudio.init();
-            console.log(`Unicorn Studio initialized successfully for project ${projectId}`);
+            // Unicorn Studio initialized for this project
             
             // Hide branding
             hideUnicornStudioBranding();
-            setInterval(() => hideUnicornStudioBranding(), 1000);
+            if (window.brandingInterval) {
+              clearInterval(window.brandingInterval);
+            }
+            window.brandingInterval = setInterval(() => hideUnicornStudioBranding(), 1000);
           } catch (error) {
             console.error(`Error initializing Unicorn Studio for project ${projectId}:`, error);
           }

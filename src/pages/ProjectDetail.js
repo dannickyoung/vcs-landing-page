@@ -245,19 +245,15 @@ export function renderProjectDetail(projectId) {
       <div class="max-w-7xl mx-auto">
         <!-- Project Header -->
         <div class="mb-8 md:mb-12">
-          <div class="mb-6 md:mb-8 flex items-center gap-2">
-            <svg class="w-4 h-4 text-vici-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-            <p class="text-xs md:text-sm text-vici-red uppercase tracking-wider">${project.category}</p>
-          </div>
-          <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-tight text-vici-white mb-4 md:mb-6">${project.title}</h1>
           <div class="flex flex-wrap gap-4 md:gap-8 text-xs md:text-sm text-vici-white/80">
             <div>
               <span class="text-vici-white/60">Year:</span> ${project.year}
             </div>
             <div>
               <span class="text-vici-white/60">Client:</span> ${project.client}
+            </div>
+            <div>
+              <span class="text-vici-white/60">Type:</span> ${project.category.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ')}
             </div>
           </div>
         </div>

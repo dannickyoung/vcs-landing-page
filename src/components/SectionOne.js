@@ -11,6 +11,7 @@ export function createSectionOne(currentRoute = '', title = '') {
       'team': 'Meet our<br><span style="font-family: \'Playfair Display\', serif; font-style: italic; font-weight: bold;">creative</span> minds',
       'contact': 'Let\'s start<br>a <span style="font-family: \'Playfair Display\', serif; font-style: italic; font-weight: bold;">conversation</span>',
       'about': 'We build brands<br>that <span style="font-family: \'Playfair Display\', serif; font-style: italic; font-weight: bold;">conquer</span>',
+      'socialmedia-video': 'Made for<br>the <span style="font-family: \'Playfair Display\', serif; font-style: italic; font-weight: bold;">scroll</span>',
       'privacy': 'Privacy <span style="font-family: \'Playfair Display\', serif; font-style: italic; font-weight: bold;">Policy</span>'
     };
     return pageTitles[baseRoute] || '';
@@ -111,6 +112,10 @@ export function createSectionOne(currentRoute = '', title = '') {
                 <p class="section-one-subtitle text-[10px] md:text-xs text-vici-white mt-2 md:mt-3" style="text-align: justify; text-align-last: right; max-width: 240px; margin-left: auto; word-spacing: 0.5em; letter-spacing: 0.05em; text-transform: uppercase;">
                   [ Building brands that stand the test of time. ]
                 </p>
+              ` : currentRoute === 'socialmedia-video' ? `
+                <p class="section-one-subtitle text-[10px] md:text-xs text-vici-white mt-2 md:mt-3" style="text-align: justify; text-align-last: right; max-width: 240px; margin-left: auto; word-spacing: 0.5em; letter-spacing: 0.05em; text-transform: uppercase;">
+                  [ Short-form video for social platforms. ]
+                </p>
               ` : ''}
             </div>
           ` : ''}
@@ -125,7 +130,8 @@ export function createSectionOne(currentRoute = '', title = '') {
   const isContactPage = currentRoute === 'contact';
   const isAboutPage = currentRoute === 'about';
   const isPrivacyPage = currentRoute === 'privacy';
-  const hasColorBends = isWorkPage || isServicesPage || isTeamPage || isContactPage || isAboutPage;
+  const isSocialMediaVideoPage = currentRoute === 'socialmedia-video';
+  const hasColorBends = isWorkPage || isServicesPage || isTeamPage || isContactPage || isAboutPage || isSocialMediaVideoPage;
   
   // ColorBends Background container
   const colorBendsEmbed = hasColorBends ? `

@@ -59,6 +59,9 @@ export function createFooter() {
                 <a href="/work" data-route="work" class="text-vici-white/50 hover:text-vici-red transition-colors footer-item opacity-0">
                   WORK
                 </a>
+                <a href="/socialmedia-video" data-route="socialmedia-video" class="text-vici-white/50 hover:text-vici-red transition-colors footer-item opacity-0">
+                  SOCIAL MEDIA VIDEO
+                </a>
                 <a href="/services" data-route="services" class="text-vici-white/50 hover:text-vici-red transition-colors footer-item opacity-0">
                   SERVICES
                 </a>

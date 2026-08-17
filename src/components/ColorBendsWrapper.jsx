@@ -58,6 +58,7 @@ export function getColorBendsConfigForPage(pageRoute) {
     'team': ["#06ffa5", "#118ab2", "#ef476f"], // Mint Green, Blue, Coral - fresh mix
     'contact': ["#7209b7", "#f72585", "#4cc9f0"], // Deep Purple, Magenta, Sky Blue - electric
     'about': ["#f77f00", "#fcbf49", "#eae2b7"], // Orange, Gold, Cream - warm earth tones
+    'socialmedia-video': ["#ff006e", "#8338ec", "#3a86ff"], // Hot Pink, Violet, Blue - social/electric
   };
   
   // Get base route (remove project slug if present)

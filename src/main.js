@@ -14,6 +14,7 @@ import { renderContact } from './pages/Contact.js';
 import { renderNews } from './pages/News.js'; // About Us page
 import { renderPrivacy } from './pages/Privacy.js';
 import { renderTerms } from './pages/Terms.js';
+import { renderSocialMediaVideo } from './pages/SocialMediaVideo.js';
 import { mountColorBends, getColorBendsConfigForPage } from './components/ColorBendsWrapper.jsx';
 import { createGradualBlur, createGradualBlurSectionHTML } from './components/GradualBlurHelper.js';
 import { mountGradualBlur, mountPageScrollBlur, unmountPageScrollBlur } from './components/GradualBlurWrapper.jsx';
@@ -390,6 +391,33 @@ async function initApp() {
     });
   });
 
+  router.addRoute('socialmedia-video', async () => {
+    if (appContent) {
+      const currentRoute = getCurrentRoute();
+      const pageContent = renderSocialMediaVideo();
+      appContent.innerHTML = renderPageWithSectionOne(pageContent, currentRoute);
+      // Highlight WORK in the main nav (this page sits under our work), and its own link in the footer
+      updateNavigationArrows('work');
+      updateFooterLinks(currentRoute);
+      initNavigation();
+      initMobileMenu();
+      initSocialMediaVideos();
+      // Initialize SectionOne animations
+      await initSectionOneAnimations();
+      // Ensure footer is loaded
+      ensureFooter();
+      // Initialize ColorBends for social media video page
+      setTimeout(() => {
+        try {
+          const config = getColorBendsConfigForPage('socialmedia-video');
+          mountColorBends('color-bends-container-section-one', config);
+        } catch (error) {
+          console.error('Failed to mount ColorBends:', error);
+        }
+      }, 100);
+    }
+  });
+
   router.addRoute('services', async () => {
     if (appContent) {
       const currentRoute = getCurrentRoute();
@@ -543,6 +571,148 @@ async function initApp() {
       }, 200);
     }
   });
+
+  // Initialize Social Media Video page players
+  // - Tap/click a player to play with sound (user gesture => unmute is allowed)
+  // - Only one video plays at a time
+  // - Auto-pauses when scrolled out of view
+  // - Cleaned up on route change via registerRouteCleanup
+  function initSocialMediaVideos() {
+    const players = Array.from(document.querySelectorAll('[data-smv-player]'));
+    if (players.length === 0) return;
+
+    const state = new Map(); // player -> { video, active }
+    let activePlayer = null;
+
+    const setActiveUI = (player, isActive) => {
+      const overlay = player.querySelector('.smv-overlay');
+      const controls = player.querySelector('.smv-controls');
+      if (overlay) {
+        overlay.style.opacity = isActive ? '0' : '1';
+      }
+      if (controls) {
+        controls.style.opacity = isActive ? '1' : '0';
+        controls.style.pointerEvents = isActive ? 'auto' : 'none';
+      }
+      player.classList.toggle('is-playing', isActive);
+    };
+
+    const setMuteUI = (player, muted) => {
+      const on = player.querySelector('.smv-icon-sound-on');
+      const off = player.querySelector('.smv-icon-sound-off');
+      if (on) on.classList.toggle('hidden', muted);
+      if (off) off.classList.toggle('hidden', !muted);
+    };
+
+    const pausePlayer = (player) => {
+      const s = state.get(player);
+      if (!s) return;
+      s.video.pause();
+      s.active = false;
+      setActiveUI(player, false);
+      if (activePlayer === player) activePlayer = null;
+    };
+
+    const playPlayer = async (player) => {
+      const s = state.get(player);
+      if (!s) return;
+      // Pause any other active player
+      if (activePlayer && activePlayer !== player) {
+        pausePlayer(activePlayer);
+      }
+      try {
+        s.video.muted = false;
+        setMuteUI(player, false);
+        await s.video.play();
+      } catch (err) {
+        // Autoplay-with-sound blocked (rare with a user gesture) => fall back to muted
+        try {
+          s.video.muted = true;
+          setMuteUI(player, true);
+          await s.video.play();
+        } catch (e) {
+          console.warn('Video play failed:', e);
+          return;
+        }
+      }
+      s.active = true;
+      activePlayer = player;
+      setActiveUI(player, true);
+    };
+
+    players.forEach((player) => {
+      const video = player.querySelector('video.smv-video');
+      if (!video) return;
+      state.set(player, { video, active: false });
+      setActiveUI(player, false);
+      setMuteUI(player, true);
+
+      // Toggle play/pause on tap (but not when tapping the mute button)
+      const onClick = (e) => {
+        if (e.target.closest('[data-smv-mute]')) return;
+        const s = state.get(player);
+        if (s.active && !video.paused) {
+          pausePlayer(player);
+        } else {
+          playPlayer(player);
+        }
+      };
+      player.addEventListener('click', onClick);
+
+      // Mute toggle
+      const muteBtn = player.querySelector('[data-smv-mute]');
+      const onMute = (e) => {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        setMuteUI(player, video.muted);
+      };
+      if (muteBtn) muteBtn.addEventListener('click', onMute);
+
+      // Progress bar
+      const progress = player.querySelector('.smv-progress');
+      const onTime = () => {
+        if (progress && video.duration) {
+          progress.style.width = `${(video.currentTime / video.duration) * 100}%`;
+        }
+      };
+      video.addEventListener('timeupdate', onTime);
+
+      // Keep UI in sync if the browser pauses the video itself
+      const onPause = () => {
+        const s = state.get(player);
+        if (s && s.active && video.paused && !video.seeking) {
+          // Leave the active state; the user can resume by tapping again
+          s.active = false;
+          setActiveUI(player, false);
+          if (activePlayer === player) activePlayer = null;
+        }
+      };
+      video.addEventListener('pause', onPause);
+
+      registerRouteCleanup(() => {
+        player.removeEventListener('click', onClick);
+        if (muteBtn) muteBtn.removeEventListener('click', onMute);
+        video.removeEventListener('timeupdate', onTime);
+        video.removeEventListener('pause', onPause);
+        try { video.pause(); } catch (e) {}
+      });
+    });
+
+    // Pause videos that scroll out of view
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            const player = entry.target;
+            const s = state.get(player);
+            if (s && s.active) pausePlayer(player);
+          }
+        });
+      }, { threshold: 0.2 });
+      players.forEach((p) => io.observe(p));
+      registerRouteCleanup(() => io.disconnect());
+    }
+  }
 
   // Initialize Work page filters
   function initWorkFilters() {
